@@ -152,7 +152,7 @@ const CalculatorForm = () => {
                 id="arrowLeftt"
                 onClick={() => goToHome()}
               ></span>
-              <h6>Order Info:</h6>
+              <h6 className="calculatorTitle">Order Info:</h6>
             </div>
 
             <CartIcons alertStatus={alertStatus} />

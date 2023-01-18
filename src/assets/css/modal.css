@@ -59,6 +59,15 @@
   width: 0px;
 }
 
+.modalTitle {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 29px;
+  line-height: 43px;
+  text-align: center;
+  color: #111111;
+  margin-bottom: 60px;
+}
 .selectModalitem {
   display: flex;
   justify-content: space-between;
@@ -116,6 +125,53 @@
   font-size: 13px;
 }
 
+.summaryItem {
+  background: #d0edf6;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.summaryItem .cartCompRightCardItems h5 {
+  font-size: 14.5px;
+  line-height: 20px;
+  color: #5a5a5a;
+}
+
+.summaryItem .cartCompRightCardItems h3 {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.summary_actions {
+  width: 60%;
+  margin: 40px auto 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summary_actions .summary_actions_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.summary_actions .summary_actions_item img {
+  width: 30px;
+}
+
+.summary_actions .summary_actions_item p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 30px;
+  text-align: center;
+  color: #6c6c6c;
+}
+
 @media screen and (max-width: 580px) {
   .select_modals_cards {
     position: fixed !important;
@@ -126,5 +182,18 @@
     height: 100vh !important;
     overflow: hidden;
     padding-bottom: 10px !important;
+  }
+
+  .modalTitle {
+    font-size: 23px;
+    line-height: 43px;
+  }
+
+  .summary_actions .summary_actions_item img {
+    width: 28px;
+  }
+
+  .summary_actions .summary_actions_item p {
+    font-size: 18px;
   }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import OAuthLayout from "../layout/OAuthLayout";
 import About from "../pages/About";
+import CartPage from "../pages/CartPage";
 import Contact from "../pages/Contact";
 import DeliveryCalculator from "../pages/DeliveryCalculator";
 import Home from "../pages/Home";
@@ -16,6 +17,7 @@ const MyRouter = () => {
           <Route path="/contact" exact element={<Contact />} />
         </Route>
         <Route path="/calculator" exact element={<DeliveryCalculator />} />
+        <Route path="/cart" exact element={<CartPage />} />
       </Routes>
     </Router>
   );

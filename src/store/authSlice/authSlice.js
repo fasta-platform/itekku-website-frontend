@@ -3,14 +3,21 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   appScreenSize: "",
   siteName: "Itekku",
+  summaryModal: {
+    status: false,
+    payload: null,
+  },
 };
 
 const authSlice = createSlice({
   name: "oauth",
   initialState,
   reducers: {
-    setAppScreenSize: (state, { payload }) => {
-      state.appScreenSize = payload;
+    setSummaryModal: (state, { payload }) => {
+      state.summaryModal = {
+        status: payload?.status,
+        payload: payload?.payload,
+      };
     },
   },
 
@@ -21,6 +28,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { setAppScreenSize } = authSlice.actions;
+export const { setSummaryModal } = authSlice.actions;
 
 export default authSlice.reducer;
