@@ -1,0 +1,382 @@
+.calculator {
+  width: 100%;
+  /* height: 100vh; */
+  overflow-y: hidden;
+  background: #e5e5e5;
+  padding-bottom: 40px;
+}
+
+.calculator_wrapper {
+  width: 70%;
+  margin: 0px auto;
+}
+
+.calculatorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0px;
+}
+
+.calculatorHeader span {
+  color: #111111;
+  font-size: 33px;
+  cursor: pointer;
+}
+
+.calculatorHeader h4 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 45.57px;
+  line-height: 62px;
+  color: #000000;
+}
+
+.calculatorForm {
+  padding-top: 30px;
+}
+
+.calculatorFormHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-bottom: 20px; */
+}
+
+.calculatorFormHeader h6 {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20.156px;
+  line-height: 27px;
+  color: #000000;
+}
+
+#arrowLeftt {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20.156px;
+  line-height: 27px;
+  color: #000000;
+  display: none;
+}
+
+.calculatorFormHeader .shopping_cart {
+  background: #d0edf6;
+  border-radius: 150px;
+  padding: 20px 20px 15px 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.shopping_cart_count {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  background: #dc0000;
+  border-radius: 100px;
+  padding: 4px 10px;
+  color: #fff;
+  font-size: 11px;
+}
+
+/* .calculatorFormHeader .shopping_cart i {
+  font-style: normal;
+  font-size: 30px;
+  color: #000000;
+} */
+
+.calculatorFormHeader .shopping_cart img {
+  width: 35px;
+}
+
+.fixedFormHeader {
+  position: fixed;
+  top: 0px;
+  left: 10%;
+  width: calc(100% - 300px);
+  background: #e5e5e5;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.calculatorFormScroll {
+  height: 100%;
+  /* overflow-y: scroll; */
+  background: #fff;
+  border-radius: 4px;
+  padding: 70px 80px;
+  /* margin-bottom: 150px; */
+}
+
+.calculatorFormScroll .form_grid label {
+  color: #111;
+}
+
+.calculatorFormScroll .form_grid input,
+.calculatorFormScroll .form_grid select {
+  font-family: "Open Sans";
+  background: #f1f1f1;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15.5745px;
+  line-height: 21px;
+  color: #313131;
+}
+
+.calculatorFormScroll .form-phone-input {
+  font-family: "Open Sans";
+  background: #f1f1f1;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15.5745px;
+  line-height: 21px;
+  color: #313131;
+}
+
+.quantity_div {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.quantity_div .form-phone-input-code {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #a8a8a8;
+  margin-right: 50px;
+}
+
+.quantity_input {
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+}
+
+.quantity_input i {
+  background: #323232;
+  color: #fff;
+  font-size: 9px;
+  border-radius: 100%;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.quantity_input span {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 23px;
+  line-height: 34px;
+  color: #111111;
+}
+
+.form_pickup_time {
+  width: 100%;
+  height: 54.7px;
+  background: #d0edf6;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+}
+
+.form_pickup_time_left {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.form_pickup_time_left img {
+  width: 15px;
+}
+
+.form_pickup_time_left span {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: #313131;
+}
+
+.form_pickup_time_left:last-child {
+  cursor: pointer;
+}
+
+.itekku_form_flex {
+  margin-top: 100px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 40px;
+}
+
+@media screen and (max-width: 1230px) {
+  .calculator_wrapper {
+    width: 100%;
+    margin: 0px auto;
+    padding: 0px 40px;
+  }
+
+  .calculatorHeader {
+    padding: 20px 0px;
+  }
+
+  .calculatorHeader span {
+    font-size: 23px;
+  }
+
+  .calculatorHeader h4 {
+    font-size: 29px;
+    line-height: 42px;
+  }
+
+  .fixedFormHeader {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    padding: 10px 20px 0px;
+  }
+
+  .calculatorForm {
+    padding-top: 30px;
+  }
+
+  .calculatorFormHeader h6 {
+    font-size: 18px;
+    line-height: 23px;
+  }
+
+  .calculatorFormHeader .shopping_cart {
+    padding: 20px 20px 15px 20px;
+    margin-bottom: 10px;
+  }
+
+  .calculatorFormHeader .shopping_cart img {
+    width: 22px;
+  }
+
+  .calculatorFormScroll {
+    /* height: 90vh; */
+    padding: 70px 30px;
+  }
+
+  .calculatorFormScroll .form_grid input,
+  .calculatorFormScroll .form_grid select {
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  .calculatorFormScroll .form-phone-input {
+    font-size: 15px;
+    line-height: 21px;
+  }
+
+  .quantity_div .form-phone-input-code {
+    font-size: 14px;
+    margin-right: 50px;
+  }
+
+  .quantity_input {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+  }
+
+  .quantity_input i {
+    font-size: 9px;
+    padding: 6px;
+  }
+
+  .quantity_input span {
+    font-size: 23px;
+    line-height: 34px;
+  }
+
+  .form_pickup_time {
+    width: 100%;
+    height: 54.7px;
+    padding: 0px 20px;
+  }
+
+  .form_pickup_time_left img {
+    width: 12px;
+  }
+
+  .form_pickup_time_left span {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 780px) {
+  .calculator_wrapper {
+    padding: 0px 20px;
+  }
+
+  .calculatorForm {
+    padding-top: 10px;
+  }
+
+  .calculatorFormHeader .shopping_cart {
+    padding: 15px 10px 8px 15px;
+    /* margin-bottom: 22px; */
+  }
+
+  .calculatorFormHeader .shopping_cart img {
+    width: 20px;
+  }
+
+  .calculatorFormScroll::-webkit-scrollbar {
+    width: 0px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .calculatorHeader span {
+    font-size: 20px;
+  }
+
+  .calculatorHeader h4 {
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  .calculatorFormScroll .form_grid {
+    display: block;
+    text-align: left;
+    margin-bottom: 0px;
+  }
+
+  .calculatorFormScroll .form_grid .form-group {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  .calculatorFormScroll {
+    height: 100%;
+    /* overflow-y: scroll; */
+    padding: 50px 30px 0px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .itekku_form_flex {
+    display: block !important;
+  }
+
+  .itekku_form_flex button {
+    width: 100% !important;
+    display: block !important;
+    margin-bottom: 18px;
+  }
+
+  .shopping_cart_count {
+    position: absolute;
+    top: -5px;
+    right: 0px;
+    padding: 2px 7px;
+    font-size: 11px;
+  }
+}
