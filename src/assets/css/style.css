@@ -242,6 +242,23 @@ button:focus {
   font-size: 17px;
 }
 
+.fasta_button_light {
+  border: none;
+  width: 100%;
+  height: 51px;
+  background: transparent;
+  border: 2px solid #000;
+  border-radius: 12px;
+  padding: 0px 30px;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16.2104px;
+  line-height: 22px;
+  color: #111111;
+}
+
 .fasta_outline_button.borderDark {
   color: #111;
   border: 2px solid #111;
@@ -340,6 +357,7 @@ button:focus {
   align-items: center;
   padding: 20px 60px;
   transition: all 300ms ease-in-out;
+  box-shadow: 0px 4px 14px rgba(123, 123, 123, 0.25);
 }
 
 .navbar_left {
@@ -1189,6 +1207,7 @@ button:focus {
   }
 
   .fasta_outline_button,
+  .fasta_button_light,
   .fasta_button {
     font-size: 17px;
   }
@@ -3210,6 +3229,7 @@ button:focus {
     font-size: 14px;
   }
 
+  .fasta_button_light,
   .fasta_outline_button {
     height: 45px;
     font-size: 14px;

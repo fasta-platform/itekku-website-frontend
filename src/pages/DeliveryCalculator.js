@@ -1,20 +1,29 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import CalculatorForm from "../components/calculator/CalculatorForm";
-import CalculatorHeader from "../components/calculator/CalculatorHeader";
 import { addFixFormHeader } from "../helpers/customFunctions";
+import {
+  setCurrentPageName,
+  setCurrentStep,
+} from "../store/authSlice/authSlice";
 
 const DeliveryCalculator = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     addFixFormHeader();
+    dispatch(setCurrentPageName("DeliveryCalculator"));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+    return () => {
+      dispatch(setCurrentStep(1));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="calculator">
-      <div className="calculator_wrapper">
-        <CalculatorHeader />
-
-        <CalculatorForm />
-      </div>
+      <CalculatorForm />
     </div>
   );
 };

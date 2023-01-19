@@ -1,8 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import CustomButtonImage from "../customs/CustomButtonImage";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const currentPageName = useSelector((state) => state.oauth.currentPageName);
 
   const scrollElement = (e, ele) => {
     e.preventDefault();
@@ -25,8 +28,18 @@ const NavBar = () => {
     }
   };
 
-  const goToCalculator = () => {
-    navigate("/calculator");
+  // const goToCalculator = () => {
+  //   navigate("/calculator");
+  // };
+
+  const handleButtonClick = (buttonType) => {
+    if (buttonType === true) {
+      navigate("/calculator");
+    } else {
+      navigate("/");
+    }
+    // console.log(buttonType);
+    // navigate("/calculator");
   };
 
   return (
@@ -90,16 +103,24 @@ const NavBar = () => {
       </div>
 
       <div className="navbar_right">
-        <button className="fasta_button" onClick={() => goToCalculator()}>
-          <span className="button_group">
-            <span>Delivery Calculator</span>
-            <img
-              style={{ width: 18 }}
-              src={require("../../assets/img/vector/dashboardd.png")}
-              alt="itekku"
-            />
-          </span>
-        </button>
+        <CustomButtonImage
+          handleClick={handleButtonClick}
+          text={
+            ["Home", "About", "Contact"].includes(currentPageName)
+              ? "Delivery Calculator"
+              : "Make A Delivery"
+          }
+          dark={
+            ["Home", "About", "Contact"].includes(currentPageName)
+              ? true
+              : false
+          }
+          imageSrc={
+            ["Home", "About", "Contact"].includes(currentPageName)
+              ? require("../../assets/img/vector/dashboardd.png")
+              : require("../../assets/img/vector/dashboardd2.png")
+          }
+        />
       </div>
     </div>
   );

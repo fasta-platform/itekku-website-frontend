@@ -7,7 +7,6 @@ const CartItem = () => {
 
   return (
     <div
-      className="cartCompLeftGridItem"
       onClick={() =>
         dispatch(
           setSummaryModal({
@@ -25,7 +24,7 @@ const CartItem = () => {
           <div className="fasta_step_v-stepper">
             <div className="fasta_step_circle">
               <img
-                src={require("../../assets/img/vector/location-start.png")}
+                src={require("../../assets/img/vector/circle-black.png")}
                 alt=""
               />
             </div>

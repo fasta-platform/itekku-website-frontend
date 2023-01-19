@@ -15,9 +15,9 @@ const MyRouter = () => {
           <Route path="/" exact element={<Home />} />
           <Route path="/about" exact element={<About />} />
           <Route path="/contact" exact element={<Contact />} />
+          <Route path="/calculator" exact element={<DeliveryCalculator />} />
+          <Route path="/cart" exact element={<CartPage />} />
         </Route>
-        <Route path="/calculator" exact element={<DeliveryCalculator />} />
-        <Route path="/cart" exact element={<CartPage />} />
       </Routes>
     </Router>
   );

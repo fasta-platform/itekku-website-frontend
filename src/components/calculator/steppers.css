@@ -1,0 +1,82 @@
+.contaoiner {
+  width: 40%;
+  margin: auto;
+}
+
+.stepper-wrapper {
+  margin: 50px auto 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.stepperTitle {
+  margin: 10px auto 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.stepperTitle span {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13.6092px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.stepper-wrapper::before {
+  content: "";
+  width: 100%;
+  height: 2px;
+  border: 1px dashed #000000;
+  position: absolute;
+  z-index: 1;
+}
+
+.progress {
+  content: "";
+  width: 0%;
+  height: 3px;
+  background-color: rgb(78, 196, 243);
+  position: absolute;
+  z-index: -1;
+  transition: width 1s;
+}
+
+.indicatorDiv {
+  z-index: 2;
+}
+
+.screen-indicator {
+  border-radius: 50%;
+  border: 2px solid #333;
+  background-color: white;
+  padding: 2px 10px;
+  color: #111;
+  transition: border-color color;
+  transition-duration: 0.7s;
+  z-index: 2;
+}
+
+.screen-indicator.active {
+  border-color: #111;
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+
+.screen-indicator.completed {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .contaoiner {
+    width: 85%;
+    margin: auto;
+  }
+}

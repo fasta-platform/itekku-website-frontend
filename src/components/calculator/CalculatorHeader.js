@@ -1,24 +1,28 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
-const CalculatorHeader = () => {
-  const navigate = useNavigate();
-
-  const goToPrevious = () => {
-    navigate(-1);
-  };
-  const goToHome = () => {
-    navigate("/");
-  };
+const CalculatorHeader = ({ currentStep, goToPrevious }) => {
+  // const goToHome = () => {
+  //   navigate("/");
+  // };
 
   return (
     <div className="calculatorHeader">
-      <span
-        className="fa fa-chevron-left"
-        onClick={() => goToPrevious()}
-      ></span>
-      <h4>Make A Delivery</h4>
-      <span className="fa fa-times" onClick={() => goToHome()}></span>
+      {currentStep !== 1 ? (
+        <span
+          className="fa fa-chevron-left"
+          onClick={() => goToPrevious()}
+        ></span>
+      ) : (
+        <div></div>
+      )}
+
+      <h4>
+        {currentStep === 1 && "Make A Delivery"}
+        {currentStep === 2 && "You’re Almost Done"}
+        {currentStep === 3 && "Review/Checkout "}
+      </h4>
+      <div></div>
+      {/* <span className="fa fa-times" onClick={() => goToHome()}></span> */}
     </div>
   );
 };
