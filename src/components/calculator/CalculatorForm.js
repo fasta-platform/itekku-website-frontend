@@ -2,32 +2,39 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { countries } from "../../appData/countries";
-import { setCurrentStep } from "../../store/authSlice/authSlice";
+import {
+  setCurrentStep,
+  setPageLoading,
+} from "../../store/authSlice/authSlice";
 import SelectModals from "../modals/SelectModals";
 import CalculatorHeader from "./CalculatorHeader";
 import CalculatorSteppers from "./CalculatorSteppers";
 import Directions from "./Directions";
 import PaymentSummary from "./PaymentSummary";
+import { getTimes } from "../../helpers/customFunctions";
+import Autocomplete from "react-google-autocomplete";
+import Alert from "../alert/Alert";
+import Swal from "sweetalert2";
 
 const CalculatorForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentStep = useSelector((state) => state.oauth.currentStep);
 
-  // const [alertStatus, setAlertStatus] = useState(false);
+  const [alertStatus, setAlertStatus] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const [visibilityStatus, setVisiblityStatus] = useState(false);
   const [selectItemData, setSelectItemData] = useState([]);
   const [selectItemType, setSelectItemType] = useState("");
   const [pickUpPoint, setPickUpPoint] = useState(undefined);
   const [senderName, setSenderName] = useState("");
-  const [senderCountryPhoneCode, setSenderCountryPhoneCode] = useState("+234");
+  const [senderCountryPhoneCode] = useState("+234");
   const [senderPhone, setSenderPhone] = useState("");
   const [pickUpTime, setPickUpTime] = useState(undefined);
   const [priority, setPriority] = useState(false);
   const [deliveryPoint, setDeliveryPoint] = useState(undefined);
   const [receiverName, setReceiverName] = useState("");
-  const [receiverCountryPhoneCode, setReceiverCountryPhoneCode] =
-    useState("+234");
+  const [receiverCountryPhoneCode] = useState("+234");
   const [receiverPhone, setReceiverPhone] = useState("");
   const [itemDesc, setItemDesc] = useState("");
 
@@ -38,8 +45,13 @@ const CalculatorForm = () => {
   const [quantity, setQuantity] = useState(1);
   const [itemType, setItemType] = useState(null);
   const [vehicleType, setVehicleType] = useState(null);
+  const [allDeliveryDetails, setAllDeliveryDetails] = useState([]);
+
+  const [allTimes] = useState(getTimes());
 
   const allCountries = countries();
+
+  const APIKEY = "AIzaSyA-lqYHLBnNE3-I2CaCjgTgQE0BqEzSEWM";
 
   const itemTypeData = [
     {
@@ -82,45 +94,50 @@ const CalculatorForm = () => {
   const vehicleTypeData = [
     {
       id: 1,
-      title: "Bike",
+      title: "motorcycle",
       img: require("../../assets/img/vector/bike.png"),
     },
     {
       id: 2,
-      title: "Car",
+      title: "car",
       img: require("../../assets/img/vector/car.png"),
     },
     {
       id: 3,
-      title: "Mini Van",
+      title: "van",
       img: require("../../assets/img/vector/van.png"),
     },
     {
       id: 4,
-      title: "Truck",
+      title: "truck",
       img: require("../../assets/img/vector/truck.png"),
     },
   ];
 
   useEffect(() => {
+    if (allTimes && allTimes?.length) {
+      setPickUpTime(allTimes[0]);
+    }
+
     validateForm();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     pickUpPoint,
     pickUpTime,
     senderName,
-    senderCountryPhoneCode,
     senderPhone,
     vehicleType,
     priority,
     deliveryPoint,
     receiverName,
-    receiverCountryPhoneCode,
     receiverPhone,
     itemType,
     itemDesc,
     quantity,
     currentStep,
+    completedStep1,
+    completedStep2,
   ]);
 
   const validateForm = () => {
@@ -134,19 +151,12 @@ const CalculatorForm = () => {
         setEmptyFields(true);
         return false;
       }
-      if (!senderCountryPhoneCode) {
-        setEmptyFields(true);
-        return false;
-      }
+
       if (!senderPhone) {
         setEmptyFields(true);
         return false;
       }
       if (!vehicleType) {
-        setEmptyFields(true);
-        return false;
-      }
-      if (!priority) {
         setEmptyFields(true);
         return false;
       }
@@ -167,10 +177,7 @@ const CalculatorForm = () => {
         setEmptyFields(true);
         return false;
       }
-      if (!receiverCountryPhoneCode) {
-        setEmptyFields(true);
-        return false;
-      }
+
       if (!receiverPhone) {
         setEmptyFields(true);
         return false;
@@ -190,38 +197,101 @@ const CalculatorForm = () => {
 
       // return;
     }
-
     setCompletedStep2(true);
 
     setEmptyFields(false);
   };
 
   const addToCart = () => {
-    // setAlertStatus(true);
-    // setTimeout(() => {
-    //   setAlertStatus(false);
-    // }, 4000);
+    dispatch(
+      setPageLoading({
+        status: true,
+        message: "adding, Please wait...",
+      })
+    );
+
+    setTimeout(() => {
+      dispatch(
+        setPageLoading({
+          status: false,
+          message: "",
+        })
+      );
+
+      let oldData = allDeliveryDetails;
+
+      let newData = [
+        ...oldData,
+        {
+          deliveryPoint,
+          receiverName,
+          receiverCountryPhoneCode,
+          receiverPhone,
+          itemDesc,
+          itemType,
+          quantity,
+        },
+      ];
+
+      setAllDeliveryDetails(newData);
+
+      setAlertStatus(true);
+      setAlertMessage("Your Item has been added");
+
+      setDeliveryPoint(undefined);
+      setReceiverName("");
+      setItemDesc("");
+      setReceiverPhone("");
+      setQuantity(1);
+      setItemType(null);
+    }, 1400);
+  };
+
+  const cancelAdd = () => {
+    let oldDatas = allDeliveryDetails;
+    let lastAddedElement = oldDatas[oldDatas?.length - 1];
+
+    setDeliveryPoint(lastAddedElement?.deliveryPoint);
+    setReceiverName(lastAddedElement?.receiverName);
+    setItemDesc(lastAddedElement?.itemDesc);
+    setReceiverPhone(lastAddedElement?.receiverPhone);
+    setQuantity(lastAddedElement?.quantity);
+    setItemType(lastAddedElement?.itemType);
+
+    // console.log(lastAddedElement);
+    oldDatas.pop();
+    setAllDeliveryDetails(oldDatas);
   };
 
   const gotoNext = () => {
-    if (completedStep1 === true) {
-      dispatch(setCurrentStep(2));
-      setTimeout(() => {
-        setEmptyFields(true);
-        validateForm();
-      }, 500);
+    dispatch(
+      setPageLoading({
+        status: true,
+        message: "please wait...",
+      })
+    );
 
-      return;
-    }
-    if (completedStep2 === true) {
-      dispatch(setCurrentStep(3));
-      setTimeout(() => {
-        setEmptyFields(true);
-        validateForm();
-      }, 500);
+    setTimeout(() => {
+      if (currentStep === 1) {
+        dispatch(
+          setPageLoading({
+            status: false,
+            message: "",
+          })
+        );
+        dispatch(setCurrentStep(2));
 
-      return;
-    }
+        return;
+      }
+      if (currentStep === 2) {
+        console.log("here 2");
+        getSummary();
+
+        return;
+      }
+
+      scrollToTopView();
+    }, 1000);
   };
   const decreaseQuantity = () => {
     if (quantity === 1) {
@@ -287,12 +357,130 @@ const CalculatorForm = () => {
     }
   };
 
+  const scrollToTopView = () => {
+    setTimeout(() => {
+      document.querySelector(".calculator").scrollTo(0, 0);
+    }, 50);
+  };
+
+  const getSummary = () => {
+    let oldData = allDeliveryDetails;
+
+    let newData = [
+      ...oldData,
+      {
+        deliveryPoint,
+        receiverName,
+        receiverCountryPhoneCode,
+        receiverPhone,
+        itemDesc,
+        itemType,
+        quantity,
+      },
+    ];
+
+    setAllDeliveryDetails(newData);
+
+    // dispatch(
+    //   setPageLoading({
+    //     status: true,
+    //     message: "please wait...",
+    //   })
+    // );
+
+    let payload = {
+      pickupLocation: {
+        lat: pickUpPoint?.geometry.location.lat(),
+        lng: pickUpPoint?.geometry.location.lng(),
+        address: pickUpPoint?.formatted_address,
+      },
+      senderName: senderName,
+      senderPhoneNumber: senderCountryPhoneCode + senderPhone,
+      vehicleType: vehicleType?.title,
+      priority: priority,
+      destinations: allDeliveryDetails?.map((item) => {
+        return {
+          receiverName: item?.receiverName,
+          receiverPhoneNumber:
+            item?.receiverCountryPhoneCode + item?.receiverPhone,
+          dropoffLocation: {
+            lat: item?.deliveryPoint?.geometry.location.lat(),
+            lng: item?.deliveryPoint?.geometry.location.lng(),
+            address: item?.deliveryPoint?.formatted_address,
+          },
+          itemDescription: item?.itemDesc,
+          itemWeight: 516,
+          itemQuantity: item?.quantity,
+          itemType: item?.itemType?.title,
+        };
+      }),
+    };
+
+    console.log(JSON.stringify(payload));
+
+    fetch(`${process.env.REACT_APP_BASEURL}/delivery/summarize`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        dispatch(
+          setPageLoading({
+            status: false,
+            message: "",
+          })
+        );
+        console.log(response);
+
+        if (response?.error !== true) {
+          Swal.fire({
+            icon: "success",
+            title: "Form submitted",
+          });
+
+          dispatch(setCurrentStep(3));
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: response?.errors[0] || "Something went wrong",
+          });
+        }
+
+        console.log(response);
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Something went wrong",
+        });
+
+        console.log(error);
+
+        dispatch(
+          setPageLoading({
+            status: false,
+            message: "",
+          })
+        );
+      });
+  };
   return (
     <div
       className={`calculator_wrapper ${
         currentStep === 3 ? "wrapper_large" : null
       }`}
     >
+      <Alert
+        status={alertStatus}
+        closeStatus={setAlertStatus}
+        message={alertMessage}
+        icon="fa fa-shopping-cart"
+      />
       <SelectModals
         status={visibilityStatus}
         data={selectItemData}
@@ -320,26 +508,68 @@ const CalculatorForm = () => {
         </div> */}
 
         <div className="calculatorFormScroll">
-          <form className="itekku_form" style={{ width: "100%", marginTop: 0 }}>
+          <form
+            className="itekku_form"
+            style={{ width: "100%", marginTop: 0, position: "relative" }}
+          >
             {currentStep !== 3 ? (
               <CalculatorSteppers
                 currentStep={currentStep}
                 completedStep1={completedStep1}
                 completedStep2={completedStep2}
+                scrollToTopView={scrollToTopView}
               />
             ) : null}
+
+            {/* <div className="removeItemCart" style={{ top: 90 }}>
+              <span style={{ display: "flex", alignItems: "center" }}>
+                <i class="bx bx-x"></i>
+                Cancel
+              </span>
+            </div> */}
+
+            {/* <div>
+              <span style={{ display: "flex", alignItems: "center" }}>
+                <i class="bx bx-x"></i>
+                Cancel
+              </span>
+            </div> */}
 
             {currentStep === 1 ? (
               <>
                 <div className="form_grid">
                   <div className="form-group">
                     <label htmlFor="">Pickup Point:</label>
-                    <input
+                    {/* <input
                       type="text"
                       value={pickUpPoint}
                       onChange={(e) => setPickUpPoint(e.target.value)}
                       placeholder="Ajah Under Bridge"
+                    /> */}
+                    <Autocomplete
+                      apiKey={APIKEY}
+                      onPlaceSelected={(place) => {
+                        setPickUpPoint(place);
+                        console.log(place);
+                      }}
+                      componentRestrictions={{ country: "ng" }}
+                      options={{
+                        types: ["geocode", "establishment"],
+                      }}
+                      defaultValue={pickUpPoint?.formatted_address || ""}
                     />
+
+                    {/* <GoogleComponent
+                      apiKey={"AIzaSyDPYzUFewPkFJ8gtgFLhYwzjubyCuOrqtk"}
+                      language={"en"}
+                      country={"country:ng"}
+                      coordinates={true}
+                      locationBoxStyle={"custom-style"}
+                      locationListStyle={"custom-style-list"}
+                      onChange={(e) => {
+                        setLocations(e);
+                      }}
+                    /> */}
                   </div>
                   <div className="form-group">
                     <label htmlFor="">Sender’s Name:</label>
@@ -347,15 +577,15 @@ const CalculatorForm = () => {
                       type="text"
                       value={senderName}
                       onChange={(e) => setSenderName(e.target.value)}
-                      placeholder="John Doe"
+                      placeholder="Sender’s Name"
                     />
                   </div>
                 </div>
                 <div className="form_grid">
                   <div className="form-group">
                     <label htmlFor="">Sender's Whatsapp Number :</label>
-                    <div className="form-phone">
-                      <select
+                    <div className="form-phone form_phone_large">
+                      {/* <select
                         onChange={(e) =>
                           setSenderCountryPhoneCode(e.target.value)
                         }
@@ -367,7 +597,7 @@ const CalculatorForm = () => {
                               {item?.name}
                             </option>
                           ))}
-                      </select>
+                      </select> */}
                       <div className="form-phone-input">
                         <div className="form-phone-input-code">
                           {senderCountryPhoneCode}
@@ -375,7 +605,11 @@ const CalculatorForm = () => {
                         <input
                           type="text"
                           value={senderPhone}
-                          onChange={(e) => setSenderPhone(e.target.value)}
+                          onChange={(e) =>
+                            setSenderPhone(
+                              e.target.value ? parseInt(e.target.value, 10) : ""
+                            )
+                          }
                           placeholder="8025777224"
                         />
                       </div>
@@ -388,7 +622,7 @@ const CalculatorForm = () => {
                       onClick={() => handleSelectVehicleType()}
                     >
                       <div className="form-phone-input-code">
-                        {vehicleType?.title || "Bike"}{" "}
+                        {vehicleType?.title || "Select vehicle type"}{" "}
                       </div>
                     </div>
                   </div>
@@ -405,8 +639,16 @@ const CalculatorForm = () => {
                         <span>Pickup time</span>
                       </div>
                       <div className="form_pickup_time_left">
-                        <span>Now</span>
-                        <i className="fa fa-chevron-down"></i>
+                        <select onChange={(e) => setPickUpTime(e.target.value)}>
+                          {allTimes &&
+                            allTimes?.map((time, i) => (
+                              <option key={i} value={time}>
+                                {time}
+                              </option>
+                            ))}
+                        </select>
+                        {/* <span>Now</span>
+                        <i className="fa fa-chevron-down"></i> */}
                       </div>
                     </div>
                   </div>
@@ -417,7 +659,7 @@ const CalculatorForm = () => {
                         <div className="custom-control custom-switch">
                           <input
                             value={priority}
-                            onChange={(e) => setPriority(e.target.value)}
+                            onChange={() => setPriority(!priority)}
                             type="checkbox"
                             className="custom-control-input"
                             id="customSwitch1"
@@ -440,49 +682,55 @@ const CalculatorForm = () => {
               <>
                 <div className="form_grid">
                   <div className="form-group">
-                    <label htmlFor="">Delivery Point 1:</label>
-                    <input
+                    <label htmlFor="">
+                      Delivery Point {allDeliveryDetails?.length + 1}:
+                    </label>
+                    {/* <input
                       type="text"
                       value={deliveryPoint}
                       onChange={(e) => setDeliveryPoint(e.target.value)}
                       placeholder="Ikeja Computer village"
+                    /> */}
+
+                    <Autocomplete
+                      apiKey={APIKEY}
+                      onPlaceSelected={(place) => {
+                        setDeliveryPoint(place);
+                      }}
+                      componentRestrictions={{ country: "ng" }}
+                      options={{
+                        types: ["geocode", "establishment"],
+                      }}
+                      defaultValue={deliveryPoint?.formatted_address || ""}
                     />
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="">Receivers Name :</label>
+                    <label htmlFor="">Receiver's Name :</label>
                     <input
                       type="text"
                       value={receiverName}
                       onChange={(e) => setReceiverName(e.target.value)}
-                      placeholder="Mike vic"
+                      placeholder="Receivers Name"
                     />
                   </div>
                 </div>
                 <div className="form_grid">
                   <div className="form-group">
-                    <label htmlFor="">Receivers Number :</label>
-                    <div className="form-phone">
-                      <select
-                        onChange={(e) =>
-                          setReceiverCountryPhoneCode(e.target.value)
-                        }
-                      >
-                        {allCountries &&
-                          allCountries?.map((item, i) => (
-                            <option key={i} value={item}>
-                              {item?.name}
-                            </option>
-                          ))}
-                      </select>
+                    <label htmlFor="">Receiver's Number :</label>
+                    <div className="form-phone form_phone_large">
                       <div className="form-phone-input">
                         <div className="form-phone-input-code">
-                          {receiverCountryPhoneCode?.dialCode}
+                          {receiverCountryPhoneCode}
                         </div>
                         <input
                           type="text"
                           value={receiverPhone}
-                          onChange={(e) => setReceiverPhone(e.target.value)}
+                          onChange={(e) =>
+                            setReceiverPhone(
+                              e.target.value ? parseInt(e.target.value, 10) : ""
+                            )
+                          }
                           placeholder="8025777224"
                         />
                       </div>
@@ -495,7 +743,7 @@ const CalculatorForm = () => {
                       onClick={() => handleSelectItemType()}
                     >
                       <div className="form-phone-input-code">
-                        {itemType?.title || "Computer"}
+                        {itemType?.title || "Select Item type"}
                       </div>
                     </div>
                   </div>
@@ -533,28 +781,57 @@ const CalculatorForm = () => {
                 </div>
 
                 <div className="form_grid mt-4">
-                  <button
-                    type="button"
-                    style={{
-                      paddingLeft: 60,
-                      paddingRight: 60,
-                      width: 300,
-                    }}
-                    onClick={() => addToCart()}
-                    className="fasta_outline_button borderDark"
-                  >
-                    <span
+                  <div>
+                    {allDeliveryDetails?.length ? (
+                      <button
+                        type="button"
+                        style={{
+                          paddingLeft: 60,
+                          paddingRight: 60,
+                          width: 300,
+                          marginBottom: 10,
+                        }}
+                        onClick={() => cancelAdd()}
+                        className="fasta_outline_button borderDark"
+                      >
+                        <span
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            columnGap: 10,
+                          }}
+                        >
+                          {/* <i class="bx bx-x"></i> */}
+                          <span>Cancel </span>
+                        </span>
+                      </button>
+                    ) : null}
+
+                    <button
+                      type="button"
+                      disabled={emptyFields}
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        columnGap: 10,
+                        paddingLeft: 60,
+                        paddingRight: 60,
+                        width: 300,
                       }}
+                      onClick={() => addToCart()}
+                      className="fasta_outline_button borderDark"
                     >
-                      <span>Add New Delivery </span>
-                      <span className="fa fa-plus"></span>
-                    </span>
-                  </button>
+                      <span
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          columnGap: 10,
+                        }}
+                      >
+                        <span>Add New Delivery </span>
+                        <span className="fa fa-plus"></span>
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </>
             ) : null}

@@ -107,7 +107,7 @@ const NavBar = () => {
           handleClick={handleButtonClick}
           text={
             ["Home", "About", "Contact"].includes(currentPageName)
-              ? "Delivery Calculator"
+              ? "Make A Delivery"
               : "Make A Delivery"
           }
           dark={

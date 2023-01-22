@@ -9,6 +9,7 @@
 .calculator_wrapper {
   width: 55%;
   margin: 0px auto;
+  position: relative;
 }
 
 .calculator_wrapper.wrapper_large {
@@ -39,6 +40,7 @@
 
 .calculatorForm {
   padding-top: 30px;
+  position: relative;
 }
 
 .calculatorFormHeader {
@@ -214,6 +216,15 @@
   display: flex;
   align-items: center;
   column-gap: 10px;
+}
+
+.form_pickup_time_left select {
+  background: transparent !important;
+  padding: 0px 10px 0px !important;
+}
+
+.form_pickup_time_left select:focus {
+  outline: none !important;
 }
 
 .form_pickup_time_left img {

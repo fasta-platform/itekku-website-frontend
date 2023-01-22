@@ -9,6 +9,10 @@ const initialState = {
   },
   currentPageName: "Home",
   currentStep: 1,
+  pageLoading: {
+    status: false,
+    message: "",
+  },
 };
 
 const authSlice = createSlice({
@@ -28,6 +32,13 @@ const authSlice = createSlice({
     setCurrentStep: (state, { payload }) => {
       state.currentStep = payload;
     },
+
+    setPageLoading: (state, { payload }) => {
+      state.pageLoading = {
+        status: payload.status,
+        message: payload.message,
+      };
+    },
   },
 
   extraReducers: {
@@ -37,7 +48,11 @@ const authSlice = createSlice({
   },
 });
 
-export const { setSummaryModal, setCurrentPageName, setCurrentStep } =
-  authSlice.actions;
+export const {
+  setSummaryModal,
+  setCurrentPageName,
+  setCurrentStep,
+  setPageLoading,
+} = authSlice.actions;
 
 export default authSlice.reducer;
