@@ -1,14 +1,20 @@
 import React from "react";
+import { formatValue } from "../../helpers/customFunctions";
 
-const PaymentSummary = () => {
+const PaymentSummary = ({ summaryDelivery }) => {
   return (
     <div className="cartCompRightCard">
       <div className="cartCompRightCardItems">
-        <h5>Items (12)</h5>
+        <h5>Items ({summaryDelivery?.destinations?.length || 1})</h5>
       </div>
       <div className="cartCompRightCardItems">
         <h5>Subtotal</h5>
-        <h3>N12,350-13,560</h3>
+        <h3>
+          N
+          {summaryDelivery?.pricing
+            ? formatValue(summaryDelivery?.pricing)
+            : 10}
+        </h3>
       </div>
       <div className="horizontal_dashed"></div>
       <div

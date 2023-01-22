@@ -46,6 +46,7 @@ const CalculatorForm = () => {
   const [itemType, setItemType] = useState(null);
   const [vehicleType, setVehicleType] = useState(null);
   const [allDeliveryDetails, setAllDeliveryDetails] = useState([]);
+  const [summaryDelivery, setSummaryDelivery] = useState([]);
 
   const [allTimes] = useState(getTimes());
 
@@ -364,23 +365,6 @@ const CalculatorForm = () => {
   };
 
   const getSummary = () => {
-    let oldData = allDeliveryDetails;
-
-    let newData = [
-      ...oldData,
-      {
-        deliveryPoint,
-        receiverName,
-        receiverCountryPhoneCode,
-        receiverPhone,
-        itemDesc,
-        itemType,
-        quantity,
-      },
-    ];
-
-    setAllDeliveryDetails(newData);
-
     // dispatch(
     //   setPageLoading({
     //     status: true,
@@ -398,25 +382,42 @@ const CalculatorForm = () => {
       senderPhoneNumber: senderCountryPhoneCode + senderPhone,
       vehicleType: vehicleType?.title,
       priority: priority,
-      destinations: allDeliveryDetails?.map((item) => {
-        return {
-          receiverName: item?.receiverName,
-          receiverPhoneNumber:
-            item?.receiverCountryPhoneCode + item?.receiverPhone,
-          dropoffLocation: {
-            lat: item?.deliveryPoint?.geometry.location.lat(),
-            lng: item?.deliveryPoint?.geometry.location.lng(),
-            address: item?.deliveryPoint?.formatted_address,
-          },
-          itemDescription: item?.itemDesc,
-          itemWeight: 516,
-          itemQuantity: item?.quantity,
-          itemType: item?.itemType?.title,
-        };
-      }),
+      destinations: allDeliveryDetails?.length
+        ? allDeliveryDetails?.map((item) => {
+            return {
+              receiverName: item?.receiverName,
+              receiverPhoneNumber:
+                item?.receiverCountryPhoneCode + item?.receiverPhone,
+              dropoffLocation: {
+                lat: item?.deliveryPoint?.geometry.location.lat(),
+                lng: item?.deliveryPoint?.geometry.location.lng(),
+                address: item?.deliveryPoint?.formatted_address,
+              },
+              itemDescription: item?.itemDesc,
+              itemWeight: 516,
+              itemQuantity: item?.quantity,
+              itemType: item?.itemType?.title,
+            };
+          })
+        : [
+            {
+              receiverName: receiverName,
+              receiverPhoneNumber: receiverCountryPhoneCode + receiverPhone,
+              dropoffLocation: {
+                lat: deliveryPoint?.geometry.location.lat(),
+                lng: deliveryPoint?.geometry.location.lng(),
+                address: deliveryPoint?.formatted_address,
+              },
+              itemDescription: itemDesc,
+              itemWeight: 516,
+              itemQuantity: quantity,
+              itemType: itemType?.title,
+            },
+          ],
     };
 
-    console.log(JSON.stringify(payload));
+    console.log(payload);
+    // console.log(JSON.stringify(payload));
 
     fetch(`${process.env.REACT_APP_BASEURL}/delivery/summarize`, {
       method: "POST",
@@ -438,10 +439,12 @@ const CalculatorForm = () => {
         console.log(response);
 
         if (response?.error !== true) {
-          Swal.fire({
-            icon: "success",
-            title: "Form submitted",
-          });
+          // Swal.fire({
+          //   icon: "success",
+          //   title: "Form submitted",
+          // });
+
+          setSummaryDelivery(response?.data);
 
           dispatch(setCurrentStep(3));
         } else {
@@ -839,11 +842,11 @@ const CalculatorForm = () => {
             {currentStep === 3 ? (
               <div className="cartComp">
                 <div className="cartCompLeft">
-                  <Directions />
+                  <Directions summaryDelivery={summaryDelivery} />
                 </div>
 
                 <div className="cartCompRight">
-                  <PaymentSummary />
+                  <PaymentSummary summaryDelivery={summaryDelivery} />
                 </div>
               </div>
             ) : null}

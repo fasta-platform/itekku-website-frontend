@@ -1,4 +1,13 @@
 import $ from "jquery";
+import numeral from "numeral";
+
+export const addComma = (value) => {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+};
+
+export const formatValue = (value) => {
+  return numeral(value).format("0,0.0[000]");
+};
 
 export const addFixNav = () => {
   $(window).scroll(function () {

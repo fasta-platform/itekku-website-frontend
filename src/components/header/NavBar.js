@@ -36,7 +36,8 @@ const NavBar = () => {
     if (buttonType === true) {
       navigate("/calculator");
     } else {
-      navigate("/");
+      navigate("/calculator");
+      // navigate("/");
     }
     // console.log(buttonType);
     // navigate("/calculator");
