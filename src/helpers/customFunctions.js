@@ -19,6 +19,14 @@ export const addFixNav = () => {
   });
 };
 
+export const removeDuplicatePhone = (arr) => {
+  return arr
+    .map((e) => e["receiverPhone"])
+    .map((e, i, final) => final.indexOf(e) === i && i)
+    .filter((obj) => arr[obj])
+    .map((e) => arr[e]);
+};
+
 export const addFixFormHeader = () => {
   $(window).scroll(function () {
     var sticky = $("#formHeader"),

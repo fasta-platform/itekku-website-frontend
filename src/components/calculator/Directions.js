@@ -1,18 +1,7 @@
 import React from "react";
-import { addComma } from "../../helpers/customFunctions";
+import { formatValue } from "../../helpers/customFunctions";
 
 const Directions = ({ summaryDelivery }) => {
-  // const dispatch = useDispatch();
-
-  // onClick={() =>
-  //   dispatch(
-  //     setSummaryModal({
-  //       status: true,
-  //       payload: null,
-  //     })
-  //   )
-  // }
-
   return (
     <div>
       <div className="summary_box_step">
@@ -42,31 +31,24 @@ const Directions = ({ summaryDelivery }) => {
           </div>
         </div>
 
-        {/* <div className="fasta_step_distance">
-          <img src={require("../../assets/img/vector/motorbike.png")} alt="" />
+        {summaryDelivery?.destinations?.length > 1 ? (
+          summaryDelivery?.destinations?.map((item, i) => (
+            <div className="fasta_step ">
+              <div className="fasta_step_v-stepper" key={i}>
+                <div className="fasta_step_circle">
+                  <img
+                    src={require("../../assets/img/vector/location-yellow.png")}
+                    alt=""
+                  />
+                </div>
+                <div className="fasta_step_line"></div>
+              </div>
 
-          <span>2km </span>
-        </div> */}
-
-        <div className="fasta_step ">
-          <div className="fasta_step_v-stepper">
-            <div className="fasta_step_circle">
-              <img
-                src={require("../../assets/img/vector/location-yellow.png")}
-                alt=""
-              />
-            </div>
-            <div className="fasta_step_line"></div>
-          </div>
-
-          <div className="fasta_step_content">
-            {/* <h6>To</h6> */}
-            <h4>Delivery Point :</h4>
-
-            {summaryDelivery?.destinations?.length > 1 ? (
-              <div className="fasta_step_content_items">
-                {summaryDelivery?.destinations?.map((item, i) => (
-                  <div className="form-group mb-4" key={i}>
+              <div className="fasta_step_content">
+                {/* <h6>To</h6> */}
+                <h4>Delivery Point :</h4>
+                <div className="fasta_step_content_items">
+                  <div className="form-group mb-4">
                     <div
                       className="form-phone-input "
                       style={{
@@ -83,7 +65,7 @@ const Directions = ({ summaryDelivery }) => {
                           <div className="cart_cost">
                             <span>Cost:</span>
                             <span>
-                              N{item?.cost ? addComma(item?.cost) : 10}
+                              N{item?.cost ? formatValue(item?.cost) : 10}
                             </span>
                           </div>
                         </div>
@@ -128,9 +110,25 @@ const Directions = ({ summaryDelivery }) => {
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
-            ) : (
+            </div>
+          ))
+        ) : (
+          <div className="fasta_step ">
+            <div className="fasta_step_v-stepper">
+              <div className="fasta_step_circle">
+                <img
+                  src={require("../../assets/img/vector/location-yellow.png")}
+                  alt=""
+                />
+              </div>
+              <div className="fasta_step_line"></div>
+            </div>
+
+            <div className="fasta_step_content">
+              {/* <h6>To</h6> */}
+              <h4>Delivery Point :</h4>
               <div className="fasta_step_content_items">
                 <div className="form-group">
                   <div className="form-phone-input ">
@@ -159,9 +157,9 @@ const Directions = ({ summaryDelivery }) => {
                   </div>
                 </div>
               </div>
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

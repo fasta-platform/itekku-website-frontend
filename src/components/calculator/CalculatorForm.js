@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { countries } from "../../appData/countries";
+// import { countries } from "../../appData/countries";
 import {
   setCurrentStep,
   setPageLoading,
@@ -11,7 +11,7 @@ import CalculatorHeader from "./CalculatorHeader";
 import CalculatorSteppers from "./CalculatorSteppers";
 import Directions from "./Directions";
 import PaymentSummary from "./PaymentSummary";
-import { getTimes } from "../../helpers/customFunctions";
+import { getTimes, removeDuplicatePhone } from "../../helpers/customFunctions";
 import Autocomplete from "react-google-autocomplete";
 import Alert from "../alert/Alert";
 import Swal from "sweetalert2";
@@ -50,7 +50,7 @@ const CalculatorForm = () => {
 
   const [allTimes] = useState(getTimes());
 
-  const allCountries = countries();
+  // const allCountries = countries();
 
   const APIKEY = "AIzaSyA-lqYHLBnNE3-I2CaCjgTgQE0BqEzSEWM";
 
@@ -203,6 +203,51 @@ const CalculatorForm = () => {
     setEmptyFields(false);
   };
 
+  const addData = (insertType) => {
+    let oldData = allDeliveryDetails;
+    let newData = [
+      ...oldData,
+      {
+        deliveryPoint,
+        receiverName,
+        receiverCountryPhoneCode,
+        receiverPhone,
+        itemDesc,
+        itemType,
+        quantity,
+      },
+    ];
+
+    setAllDeliveryDetails(newData);
+
+    if (insertType === "SUBMIT") {
+      getSummary(newData);
+    }
+  };
+  const insertData = (insertType) => {
+    let oldData = allDeliveryDetails;
+
+    if (insertType === "SUBMIT") {
+      let checkIfPhoneIsAdded = oldData?.length
+        ? oldData?.find(
+            (item) =>
+              item?.receiverPhone === receiverPhone &&
+              item?.receiverName === receiverName
+          )
+        : null;
+
+      console.log(checkIfPhoneIsAdded);
+
+      if (checkIfPhoneIsAdded) {
+        getSummary(oldData);
+      } else {
+        addData(insertType);
+      }
+      //
+    } else {
+      addData(insertType);
+    }
+  };
   const addToCart = () => {
     dispatch(
       setPageLoading({
@@ -212,29 +257,13 @@ const CalculatorForm = () => {
     );
 
     setTimeout(() => {
+      insertData("ADD");
       dispatch(
         setPageLoading({
           status: false,
           message: "",
         })
       );
-
-      let oldData = allDeliveryDetails;
-
-      let newData = [
-        ...oldData,
-        {
-          deliveryPoint,
-          receiverName,
-          receiverCountryPhoneCode,
-          receiverPhone,
-          itemDesc,
-          itemType,
-          quantity,
-        },
-      ];
-
-      setAllDeliveryDetails(newData);
 
       setAlertStatus(true);
       setAlertMessage("Your Item has been added");
@@ -285,8 +314,8 @@ const CalculatorForm = () => {
         return;
       }
       if (currentStep === 2) {
-        console.log("here 2");
-        getSummary();
+        insertData("SUBMIT");
+        //
 
         return;
       }
@@ -364,13 +393,21 @@ const CalculatorForm = () => {
     }, 50);
   };
 
-  const getSummary = () => {
-    // dispatch(
-    //   setPageLoading({
-    //     status: true,
-    //     message: "please wait...",
-    //   })
-    // );
+  const getSummary = (data) => {
+    // if (checkIfPhoneIsAdded) {
+
+    // }
+
+    console.log("reponse", data);
+
+    dispatch(
+      setPageLoading({
+        status: true,
+        message: "please wait...",
+      })
+    );
+
+    let newDestinations = removeDuplicatePhone(data);
 
     let payload = {
       pickupLocation: {
@@ -382,42 +419,26 @@ const CalculatorForm = () => {
       senderPhoneNumber: senderCountryPhoneCode + senderPhone,
       vehicleType: vehicleType?.title,
       priority: priority,
-      destinations: allDeliveryDetails?.length
-        ? allDeliveryDetails?.map((item) => {
-            return {
-              receiverName: item?.receiverName,
-              receiverPhoneNumber:
-                item?.receiverCountryPhoneCode + item?.receiverPhone,
-              dropoffLocation: {
-                lat: item?.deliveryPoint?.geometry.location.lat(),
-                lng: item?.deliveryPoint?.geometry.location.lng(),
-                address: item?.deliveryPoint?.formatted_address,
-              },
-              itemDescription: item?.itemDesc,
-              itemWeight: 516,
-              itemQuantity: item?.quantity,
-              itemType: item?.itemType?.title,
-            };
-          })
-        : [
-            {
-              receiverName: receiverName,
-              receiverPhoneNumber: receiverCountryPhoneCode + receiverPhone,
-              dropoffLocation: {
-                lat: deliveryPoint?.geometry.location.lat(),
-                lng: deliveryPoint?.geometry.location.lng(),
-                address: deliveryPoint?.formatted_address,
-              },
-              itemDescription: itemDesc,
-              itemWeight: 516,
-              itemQuantity: quantity,
-              itemType: itemType?.title,
-            },
-          ],
+      destinations: newDestinations?.map((item) => {
+        return {
+          receiverName: item?.receiverName,
+          receiverPhoneNumber:
+            item?.receiverCountryPhoneCode + item?.receiverPhone,
+          dropoffLocation: {
+            lat: item?.deliveryPoint?.geometry.location.lat(),
+            lng: item?.deliveryPoint?.geometry.location.lng(),
+            address: item?.deliveryPoint?.formatted_address,
+          },
+          itemDescription: item?.itemDesc,
+          itemWeight: 516,
+          itemQuantity: item?.quantity,
+          itemType: item?.itemType?.title,
+        };
+      }),
     };
 
     console.log(payload);
-    // console.log(JSON.stringify(payload));
+    console.log(JSON.stringify(payload));
 
     fetch(`${process.env.REACT_APP_BASEURL}/delivery/summarize`, {
       method: "POST",
@@ -553,7 +574,6 @@ const CalculatorForm = () => {
                       apiKey={APIKEY}
                       onPlaceSelected={(place) => {
                         setPickUpPoint(place);
-                        console.log(place);
                       }}
                       componentRestrictions={{ country: "ng" }}
                       options={{
@@ -613,6 +633,7 @@ const CalculatorForm = () => {
                               e.target.value ? parseInt(e.target.value, 10) : ""
                             )
                           }
+                          maxLength={10}
                           placeholder="8025777224"
                         />
                       </div>
@@ -734,6 +755,7 @@ const CalculatorForm = () => {
                               e.target.value ? parseInt(e.target.value, 10) : ""
                             )
                           }
+                          maxLength={10}
                           placeholder="8025777224"
                         />
                       </div>
