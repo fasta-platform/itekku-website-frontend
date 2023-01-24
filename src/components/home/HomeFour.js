@@ -208,13 +208,24 @@ const HomeFour = () => {
         {/* <img src={require("../../assets/img/africanman.png")} alt="itekku" /> */}
       </div>
       <div className="HomeFourRight">
-        <h5>
+        <div className="row">
+          <div className="col-md-7">
+            <h4>We Would Love to Know you more </h4>
+          </div>
+          <div className="col-md-5">
+            <p>
+              Please take a minute to fill the form below so that we can tailor
+              our service to your business needs
+            </p>
+          </div>
+        </div>
+        {/* <h5>
           We Would <span className="grayColor">Love </span> to Know you more
         </h5>
         <p>
           Please take a minute to fill the form below so that we can tailor our
           service to your business needs
-        </p>
+        </p> */}
 
         <form className="itekku_form" onSubmit={submitForm}>
           <div className="form_grid">

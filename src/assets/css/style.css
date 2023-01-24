@@ -708,7 +708,18 @@ button:disabled {
 
 .HomeFourRight {
   text-align: center;
-  padding: 90px 70px 60px;
+  padding: 90px 30px 60px;
+}
+
+.HomeFourRight h4 {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 40.28px;
+  line-height: 55px;
+  text-transform: capitalize;
+  color: #fff;
+  margin-bottom: 30px;
+  text-align: left;
 }
 
 .HomeFourRight h5 {
@@ -725,9 +736,9 @@ button:disabled {
 }
 
 .HomeFourRight p {
-  width: 40%;
-  margin: auto;
-  text-align: center;
+  width: 100% !important;
+  margin: 0px;
+  text-align: right !important;
   font-weight: 400;
   font-size: 18.15px;
   line-height: 25px;
@@ -1416,13 +1427,19 @@ button:disabled {
   .HomeFour {
     width: 92%;
     margin: 80px auto 100px;
-    grid-template-columns: 600px 1fr;
+    grid-template-columns: 500px 1fr;
     margin-bottom: 100px;
     /* height: 900px; */
   }
 
   .HomeFourRight {
-    padding: 90px 70px 60px;
+    padding: 90px 30px 60px;
+  }
+
+  .HomeFourRight h4 {
+    font-size: 40.28px;
+    line-height: 55px;
+    margin-bottom: 0px;
   }
 
   .HomeFourRight h5 {
@@ -1432,14 +1449,13 @@ button:disabled {
   }
 
   .HomeFourRight p {
-    width: 43%;
     font-size: 17px;
     line-height: 25px;
   }
 
   /* itekku_form */
   .itekku_form {
-    width: 92%;
+    width: 100%;
   }
 
   .form_grid {
@@ -1771,6 +1787,11 @@ button:disabled {
 
   .HomeFourRight {
     padding: 90px 30px 60px;
+  }
+
+  .HomeFourRight h4 {
+    font-size: 30px;
+    line-height: 55px;
   }
 
   .HomeFourRight h5 {
@@ -2533,6 +2554,25 @@ button:disabled {
     padding: 90px 20px 60px;
   }
 
+  .HomeFourRight .col-md-7,
+  .HomeFourRight .col-md-5 {
+    width: 100% !important;
+    flex: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .HomeFourRight h4 {
+    font-size: 30px;
+    line-height: 55px;
+    text-align: center;
+  }
+
+  .HomeFourRight p {
+    text-align: center !important;
+    width: 50% !important;
+    margin: auto;
+  }
+
   /* ABOUT */
 
   /* aboutBanner */
@@ -2802,6 +2842,17 @@ button:disabled {
   .HomeThreeLeft h5 {
     font-size: 27px;
     line-height: 40px;
+  }
+
+  .HomeFourRight h4 {
+    font-size: 27px;
+    line-height: 40px;
+    margin-bottom: 20px;
+  }
+
+  .HomeFourRight p {
+    width: 75% !important;
+    margin: auto;
   }
 
   .HomeOneLeft p,
@@ -3097,6 +3148,12 @@ button:disabled {
     padding: 10px 70px;
     font-size: 17px;
     line-height: 30px;
+  }
+
+  .HomeFourRight h4 {
+    font-size: 24px;
+    line-height: 40px;
+    margin-bottom: 20px;
   }
 
   .HomeFourRight p {
