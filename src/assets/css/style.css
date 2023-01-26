@@ -2431,6 +2431,9 @@ button:disabled {
   /* HomeOne */
   .HomeOne {
     display: block;
+    /* display: flex;
+    flex-direction: column;
+    text-align: center; */
   }
 
   .HomeOne_fresh {
@@ -2445,6 +2448,7 @@ button:disabled {
   .HomeOneLeft {
     max-width: 70%;
     padding: 50px 60px 20px 40px;
+    text-align: center;
   }
 
   .HomeOneLeft h5 {
@@ -2455,6 +2459,15 @@ button:disabled {
   .HomeOneLeft p {
     font-size: 17px;
     line-height: 30px;
+  }
+
+  .HomeOneLeft div {
+    width: 100%;
+    text-align: center;
+  }
+
+  .HomeOneLeft div .fasta_button {
+    width: 280px;
   }
 
   .HomeOneRight {
@@ -2814,13 +2827,33 @@ button:disabled {
     line-height: 30px;
   }
 
+  .HomeOne {
+    text-align: center;
+  }
+
   .HomeOne_fresh,
   .HomeTwo_fresh {
-    display: none;
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: unset !important;
+    top: unset !important;
+    width: auto !important;
+    margin: auto !important;
+    height: 400px;
   }
 
   .HomeOneLeft {
     max-width: 95%;
+  }
+
+  .banner_logo {
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(minmax(50px, 1fr)); */
+    width: 100%;
   }
 
   .HomeTwoRight {
@@ -3067,9 +3100,9 @@ button:disabled {
     line-height: 30px;
   }
 
-  .banner_img {
+  /* .banner_img {
     display: none;
-  }
+  } */
 
   .banner_img_one,
   .banner_img_three {
@@ -3087,9 +3120,9 @@ button:disabled {
     text-align: center;
   }
 
-  .HomeOneRight {
+  /* .HomeOneRight {
     display: none;
-  }
+  } */
 
   .HomeTwoRight {
     width: 100%;
