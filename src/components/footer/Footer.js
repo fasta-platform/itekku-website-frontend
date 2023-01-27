@@ -74,7 +74,7 @@ const Footer = () => {
         <div className="footer_item">
           <h4>CONNECT WITH US</h4>
           <div className="footer_item_links_social">
-            <a href="gdsfsdh">
+            <a href="https://www.linkedin.com/company/fasta-ng/">
               <i className="fa fa-facebook"></i>
             </a>
             <a href="https://instagram.com/getitekku?igshid=Zjc2ZTc4Nzk=">
@@ -83,7 +83,7 @@ const Footer = () => {
             <a href="https://twitter.com/getitekku?s=21&t=vuCqwbm95Wl4YnBTELIWIg">
               <i className="fa fa-twitter"></i>
             </a>
-            <a href="gdsfsdh">
+            <a href="https://www.linkedin.com/company/fasta-ng/">
               <i className="fa fa-linkedin"></i>
             </a>
           </div>
