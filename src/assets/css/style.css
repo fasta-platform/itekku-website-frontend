@@ -374,6 +374,10 @@ button:disabled {
   box-shadow: 0px 4px 14px rgba(123, 123, 123, 0.25);
 }
 
+.menu_wrapper_div {
+  display: none;
+}
+
 .navbar_left {
   display: flex;
   justify-content: flex-start;
@@ -412,6 +416,26 @@ button:disabled {
   border-radius: 10px;
 }
 
+.menu_close_div,
+.showOnMobile {
+  display: none;
+}
+
+.navbar_right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.navbar_right_bugr {
+  margin-left: 20px;
+  display: none;
+}
+
+.navbar_right_bugr i {
+  font-size: 28px;
+}
+
 /* Banner */
 
 .homeTopBanner {
@@ -424,16 +448,16 @@ button:disabled {
 
 .banner_img {
   position: absolute;
-  width: 320px;
+  width: 400px;
   z-index: 1;
 }
 
 .banner_img_one {
-  top: 7%;
+  top: 4%;
 }
 
 .banner_img_two {
-  top: 7%;
+  top: 4%;
   right: 10%;
 }
 
@@ -449,7 +473,7 @@ button:disabled {
 
 .homeTopBannerContent {
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -461,7 +485,7 @@ button:disabled {
 .homeTopBannerContent h5 {
   font-style: normal;
   font-weight: 700;
-  font-size: 49px;
+  font-size: 59px;
   line-height: 62px;
   text-align: center;
   text-transform: capitalize;
@@ -472,7 +496,7 @@ button:disabled {
 .homeTopBannerContent p {
   font-style: normal;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 27px;
   line-height: 32px;
   text-align: center;
   color: #a8a8a8;
@@ -499,18 +523,18 @@ button:disabled {
 
 .HomeOneLeft {
   width: 100%;
-  max-width: 690px;
+  /* max-width: 1000px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  padding: 170px 120px 120px;
+  padding: 170px 200px 120px;
 }
 
 .HomeOneLeft h5 {
   font-style: normal;
   font-weight: 800;
-  font-size: 40.28px;
+  font-size: 55px;
   line-height: 55px;
   text-transform: capitalize;
   color: #111111;
@@ -520,7 +544,7 @@ button:disabled {
 .HomeOneLeft p {
   font-style: normal;
   font-weight: 400;
-  font-size: 19.28px;
+  font-size: 22px;
   line-height: 33px;
   color: #111111;
 }
@@ -589,7 +613,7 @@ button:disabled {
 
 .HomeTwoRight {
   width: 100%;
-  max-width: 580px;
+  max-width: 800px;
   margin-left: auto;
   display: flex;
   flex-direction: column;
@@ -601,7 +625,7 @@ button:disabled {
 .HomeTwoRight h5 {
   font-style: normal;
   font-weight: 800;
-  font-size: 40.28px;
+  font-size: 55px;
   line-height: 55px;
   text-transform: capitalize;
   color: #fff;
@@ -611,7 +635,7 @@ button:disabled {
 .HomeTwoRight p {
   font-style: normal;
   font-weight: 400;
-  font-size: 19.28px;
+  font-size: 22px;
   line-height: 33px;
   color: #c7c7c7;
   padding-right: 20px;
@@ -638,7 +662,7 @@ button:disabled {
 
 .HomeThreeLeft {
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -649,7 +673,7 @@ button:disabled {
 .HomeThreeLeft h5 {
   font-style: normal;
   font-weight: 800;
-  font-size: 48px;
+  font-size: 55px;
   line-height: 55px;
   text-transform: capitalize;
   color: #fff;
@@ -659,7 +683,7 @@ button:disabled {
 .HomeThreeLeft p {
   font-style: normal;
   font-weight: 400;
-  font-size: 19.28px;
+  font-size: 22px;
   line-height: 33px;
   color: #fff;
 }
@@ -1192,7 +1216,7 @@ button:disabled {
 .footer {
   width: 100%;
   padding: 70px 80px 50px;
-  background: #111;
+  background: #f1f1f1;
   color: #fff;
   border-radius: 50px 50px 0px 0px;
 }
@@ -1218,7 +1242,7 @@ button:disabled {
   font-weight: 700;
   font-size: 21px;
   line-height: 25px;
-  color: #f1f1f1;
+  color: #111;
 }
 
 .footer_item_links a {
@@ -1226,7 +1250,7 @@ button:disabled {
   font-weight: 400;
   font-size: 18.21px;
   line-height: 25px;
-  color: #6c6c6c;
+  color: #626262;
   margin-bottom: 20px;
 }
 
@@ -1240,13 +1264,13 @@ button:disabled {
   font-weight: 400;
   font-size: 48px;
   line-height: 25px;
-  color: #6c6c6c;
+  color: #555555;
 }
 
 .footer_copyright {
   margin-top: 60px;
   text-align: center;
-  color: #6c6c6c;
+  color: #555;
 }
 
 .footer_copyright h6 {
@@ -2374,10 +2398,83 @@ button:disabled {
 }
 
 @media screen and (max-width: 1019px) {
-  .itekku-top-header,
-  .navbar_middle,
+  .itekku-top-header {
+    padding: 5px 15px;
+  }
+  .itekku-top-header .left_top_header,
   .navbar_left .logo_link {
     display: none;
+  }
+
+  .navbar {
+    column-gap: 10px;
+  }
+
+  .navbar_middle {
+    position: fixed;
+    top: 0;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 300px;
+    background: #fff;
+    padding: 20px 0px 40px;
+    z-index: 420 !important;
+    transition: all 600ms ease-in-out;
+    /* padding-top: 80px; */
+    transform: translateX(-190%);
+  }
+
+  .navbar_middle.showMenu {
+    transform: translateX(0);
+  }
+
+  .navbar_middle a {
+    margin-bottom: 22px;
+  }
+
+  .menu_wrapper_div {
+    position: fixed;
+    top: 0;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(24, 22, 22, 0.678);
+    z-index: 121;
+  }
+  .menu_wrapper_div.showMenu {
+    display: unset;
+  }
+
+  .menu_close_div {
+    display: unset;
+    position: relative;
+    margin-bottom: 90px;
+  }
+
+  .menu_close {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    padding: 0px 20px;
+  }
+
+  .menu_close i {
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .navbar_right_bugr {
+    display: unset;
+  }
+
+  .showOnMobile {
+    display: unset;
   }
 
   .logo img {

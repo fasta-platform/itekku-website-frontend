@@ -6,15 +6,20 @@ import HomeFour from "../components/home/HomeFour";
 import HomeOne from "../components/home/HomeOne";
 import HomeThree from "../components/home/HomeThree";
 import HomeTwo from "../components/home/HomeTwo";
-import { setCurrentPageName } from "../store/authSlice/authSlice";
+import {
+  setCurrentPageName,
+  setShowMobileMenu,
+} from "../store/authSlice/authSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setCurrentPageName("Home"));
+
     return () => {
       window.scrollTo({ top: 0 });
+      dispatch(setShowMobileMenu(false));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

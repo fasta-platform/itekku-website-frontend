@@ -15,6 +15,7 @@ const initialState = {
   },
 
   whatsappNumber: null,
+  showMobileMenu: false,
 };
 
 const authSlice = createSlice({
@@ -29,6 +30,10 @@ const authSlice = createSlice({
     },
     setCurrentPageName: (state, { payload }) => {
       state.currentPageName = payload;
+      state.showMobileMenu = false;
+
+      console.log(state.currentPageName);
+      console.log(state.showMobileMenu);
     },
 
     setCurrentStep: (state, { payload }) => {
@@ -45,6 +50,10 @@ const authSlice = createSlice({
     setWhatsappNumber: (state, { payload }) => {
       state.whatsappNumber = payload;
     },
+
+    setShowMobileMenu: (state, { payload }) => {
+      state.showMobileMenu = payload;
+    },
   },
 
   extraReducers: {
@@ -60,6 +69,7 @@ export const {
   setCurrentStep,
   setPageLoading,
   setWhatsappNumber,
+  setShowMobileMenu,
 } = authSlice.actions;
 
 export default authSlice.reducer;

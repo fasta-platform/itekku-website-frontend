@@ -1,11 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { setShowMobileMenu } from "../../store/authSlice/authSlice";
 import CustomButtonImage from "../customs/CustomButtonImage";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const currentPageName = useSelector((state) => state.oauth.currentPageName);
+  const showMobileMenu = useSelector((state) => state.oauth.showMobileMenu);
+
+  useEffect(() => {}, [showMobileMenu]);
 
   const scrollElement = (e, ele) => {
     e.preventDefault();
@@ -13,6 +18,7 @@ const NavBar = () => {
     let element = document.getElementById(ele);
     console.log("ID", ele);
     console.log("element", element);
+    closeMenu();
 
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -43,6 +49,14 @@ const NavBar = () => {
     // navigate("/calculator");
   };
 
+  const toggleMenu = () => {
+    dispatch(setShowMobileMenu(!showMobileMenu));
+  };
+
+  const closeMenu = () => {
+    dispatch(setShowMobileMenu(false));
+  };
+
   return (
     <div className="navbar" id="top_header">
       <div className="navbar_left">
@@ -59,7 +73,38 @@ const NavBar = () => {
         </NavLink>
       </div>
 
-      <div className="navbar_middle">
+      <div
+        className={`menu_wrapper_div  ${
+          showMobileMenu === true ? "showMenu" : ""
+        }`}
+        onClick={() => closeMenu()}
+      ></div>
+
+      <div
+        className={`navbar_middle  ${
+          showMobileMenu === true ? "showMenu" : ""
+        }`}
+      >
+        <div className="menu_close_div">
+          <div className="menu_close">
+            <NavLink to="/" style={{ padding: 0 }}>
+              <img
+                style={{ width: 120, height: 32 }}
+                src={require("../../assets/img/itekku.png")}
+                alt="itekku logo"
+              />
+            </NavLink>
+
+            <i className="bx bx-x" onClick={() => closeMenu()}></i>
+          </div>
+        </div>
+
+        <NavLink to="/about" className="top_link showOnMobile">
+          About Us
+        </NavLink>
+        <NavLink to="/contact" className="top_link showOnMobile">
+          Contact Us
+        </NavLink>
         <a
           href="true"
           onClick={(e) => scrollElement(e, "SocialCommerce")}
@@ -122,6 +167,10 @@ const NavBar = () => {
               : require("../../assets/img/vector/dashboardd2.png")
           }
         />
+
+        <div className="navbar_right_bugr">
+          <i className="bx bx-menu" onClick={() => toggleMenu()}></i>
+        </div>
       </div>
     </div>
   );

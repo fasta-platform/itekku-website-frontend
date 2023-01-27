@@ -5,22 +5,22 @@ const ContactAddressDetails = () => {
     {
       id: 1,
       title: "Address ",
-      desc: "Horizon 1 Lekki Gardens, 235 Kusenla Road, Lekki, Nigeria ",
+      desc: "3a Dotun Jolaosho Close, off Allen Avenue, Ikeja Lagos",
     },
     {
       id: 2,
       title: "Email",
-      desc: "Horizon 1 Lekki Gardens, 235 Kusenla Road, Lekki, Nigeria",
+      desc: "info@itekku.ng",
     },
     {
       id: 3,
       title: "Phone ",
-      desc: "Horizon 1 Lekki Gardens, 235 Kusenla Road, Lekki, Nigeria",
+      desc: "+234 (913)-700-0318",
     },
     {
       id: 4,
       title: "Offices",
-      desc: "Horizon 1 Lekki Gardens, 235 Kusenla Road, Lekki, Nigeria",
+      desc: "Lagos Nigeria",
     },
   ];
   return (

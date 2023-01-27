@@ -1,7 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
+import { setShowMobileMenu } from "../../store/authSlice/authSlice";
 
 const Footer = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const scrollElement = (e, ele) => {
@@ -10,6 +13,8 @@ const Footer = () => {
     let element = document.getElementById(ele);
     console.log("ID", ele);
     console.log("element", element);
+
+    closeMenu();
 
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -23,6 +28,10 @@ const Footer = () => {
         // window.scrollTo({ top: 0 });
       }, 300);
     }
+  };
+
+  const closeMenu = () => {
+    dispatch(setShowMobileMenu(false));
   };
 
   return (
@@ -68,14 +77,14 @@ const Footer = () => {
             <a href="gdsfsdh">
               <i className="fa fa-facebook"></i>
             </a>
-            <a href="gdsfsdh">
+            <a href="https://instagram.com/getitekku?igshid=Zjc2ZTc4Nzk=">
               <i className="fa fa-instagram"></i>
             </a>
-            <a href="gdsfsdh">
+            <a href="https://twitter.com/getitekku?s=21&t=vuCqwbm95Wl4YnBTELIWIg">
               <i className="fa fa-twitter"></i>
             </a>
             <a href="gdsfsdh">
-              <i className="fa fa-google-plus"></i>
+              <i className="fa fa-linkedin"></i>
             </a>
           </div>
         </div>
@@ -83,7 +92,7 @@ const Footer = () => {
       <div className="footer_copyright">
         <h6>Copyright © ITEKKU Limited 2022</h6>
         <h6>
-          his site is protected by reCAPTCHA Enterprise and the Google Privacy
+          This site is protected by reCAPTCHA Enterprise and the Google Privacy
           Policy and Terms of Service apply.
         </h6>
       </div>

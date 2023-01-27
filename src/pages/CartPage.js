@@ -4,7 +4,10 @@ import { useDispatch } from "react-redux";
 import CalculatorHeader from "../components/calculator/CalculatorHeader";
 import CartComp from "../components/calculator/CartComp";
 import { addFixFormHeader } from "../helpers/customFunctions";
-import { setCurrentPageName } from "../store/authSlice/authSlice";
+import {
+  setCurrentPageName,
+  setShowMobileMenu,
+} from "../store/authSlice/authSlice";
 
 const CartPage = () => {
   const dispatch = useDispatch();
@@ -12,6 +15,7 @@ const CartPage = () => {
   useEffect(() => {
     addFixFormHeader();
     dispatch(setCurrentPageName("CartPage"));
+    dispatch(setShowMobileMenu(false));
   }, []);
 
   return (

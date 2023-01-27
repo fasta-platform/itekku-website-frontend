@@ -10,7 +10,7 @@ const TopHeader = () => {
           className="fa fa-phone top_link"
           style={{ marginRight: 10 }}
         ></span>
-        <span className="top_link">+234 000 000 000</span>
+        <span className="top_link">+234 (913)-700-0318</span>
       </div>
       <div className="right_top_header">
         <NavLink to="/contact" className="top_link">

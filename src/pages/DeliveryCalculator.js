@@ -5,6 +5,7 @@ import { addFixFormHeader } from "../helpers/customFunctions";
 import {
   setCurrentPageName,
   setCurrentStep,
+  setShowMobileMenu,
 } from "../store/authSlice/authSlice";
 
 const DeliveryCalculator = () => {
@@ -17,6 +18,7 @@ const DeliveryCalculator = () => {
 
     return () => {
       dispatch(setCurrentStep(1));
+      dispatch(setShowMobileMenu(false));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

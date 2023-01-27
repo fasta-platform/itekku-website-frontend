@@ -6,15 +6,20 @@ import AboutThree from "../components/about/AboutThree";
 import AboutTwo from "../components/about/AboutTwo";
 import AboutBanner from "../components/banner/AboutBanner";
 import Footer from "../components/footer/Footer";
-import { setCurrentPageName } from "../store/authSlice/authSlice";
+import {
+  setCurrentPageName,
+  setShowMobileMenu,
+} from "../store/authSlice/authSlice";
 
 const About = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setCurrentPageName("About"));
+
     return () => {
       window.scrollTo({ top: 0 });
+      dispatch(setShowMobileMenu(false));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
