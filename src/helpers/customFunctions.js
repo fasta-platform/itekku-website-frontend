@@ -53,7 +53,7 @@ export const getTimes = () => {
 
   let d = new Date(),
     h = d.getHours(),
-    m = 30 * Math.floor(d.getMinutes() / 15),
+    m = 15 * Math.floor(d.getMinutes() / 15),
     stamp = `${h}:${m === 0 ? `00` : m}`;
 
   let pos = arr.indexOf(stamp);
