@@ -1,7 +1,24 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { formatValue } from "../../helpers/customFunctions";
 
 const PaymentSummary = ({ summaryDelivery }) => {
+  const whatsappNumber = useSelector((state) => state.oauth.whatsappNumber);
+  // var params = new URLSearchParams(`text=Hello, I just made a delivery with delivery id: ${delivery._id}`)
+
+  const checkoutOnWhatsapp = () => {
+    let summaryDeliveryID = summaryDelivery?._id;
+    let params = new URLSearchParams(
+      `text=Hello, I just made a delivery with delivery id: ${summaryDeliveryID}`
+    );
+    let url = `https://wa.me/${whatsappNumber}?${params}`;
+
+    window.location.href = url;
+
+    // console.log(whatsappNumber);
+    // console.log(url);
+  };
+
   return (
     <div className="cartCompRightCard">
       <div className="cartCompRightCardItems">
@@ -22,6 +39,7 @@ const PaymentSummary = ({ summaryDelivery }) => {
         style={{ marginTop: 30, marginBottom: 40 }}
       >
         <button
+          onClick={() => checkoutOnWhatsapp()}
           type="button"
           style={{
             paddingLeft: 60,

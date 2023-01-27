@@ -11,7 +11,7 @@ const CalculatorSteppers = ({
   const dispatch = useDispatch();
 
   const moveToStep = (value) => {
-    console.log(value);
+    // console.log(value);
     if (value === 1) {
       // navigate("/login");
       dispatch(setCurrentStep(1));

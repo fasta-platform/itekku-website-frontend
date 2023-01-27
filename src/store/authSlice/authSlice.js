@@ -13,6 +13,8 @@ const initialState = {
     status: false,
     message: "",
   },
+
+  whatsappNumber: null,
 };
 
 const authSlice = createSlice({
@@ -39,6 +41,10 @@ const authSlice = createSlice({
         message: payload.message,
       };
     },
+
+    setWhatsappNumber: (state, { payload }) => {
+      state.whatsappNumber = payload;
+    },
   },
 
   extraReducers: {
@@ -53,6 +59,7 @@ export const {
   setCurrentPageName,
   setCurrentStep,
   setPageLoading,
+  setWhatsappNumber,
 } = authSlice.actions;
 
 export default authSlice.reducer;

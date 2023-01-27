@@ -15,7 +15,9 @@ const HomeFour = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [businessLocation, setBusinessLocation] = useState("Lagos State");
-  const [selectedBusinessSize, setSelectedBusinessSize] = useState([]);
+  const [selectedBusinessSize, setSelectedBusinessSize] = useState([
+    "Social Commerce",
+  ]);
 
   const [emptyFields, setEmptyFields] = useState(true);
   const [showDropDown, setShowDropDown] = useState(false);
@@ -192,7 +194,7 @@ const HomeFour = () => {
           title: "Something went wrong",
         });
 
-        console.log(error);
+        // console.log(error);
 
         dispatch(
           setPageLoading({
