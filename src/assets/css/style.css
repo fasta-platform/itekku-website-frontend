@@ -3182,6 +3182,11 @@ button:disabled {
 }
 
 @media screen and (max-width: 550px) {
+  html,
+  body {
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
   .homeTopBannerContent {
     width: 100%;
     max-width: 350px;
