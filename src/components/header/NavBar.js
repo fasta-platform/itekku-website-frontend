@@ -131,7 +131,7 @@ const NavBar = () => {
           onClick={(e) => scrollElement(e, "ItekkuForBusiness")}
           className="top_link scroll active"
         >
-          Itekku For Business
+          iTEKKU For Business
         </a>
         {/* <NavLink to="/" className="top_link scroll">
           Social Commerce

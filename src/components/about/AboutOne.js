@@ -8,17 +8,17 @@ const AboutOne = () => {
       </h5>
 
       <p>
-        We are mix of professionals with varied experience in the technology
-        space that spans over 3 decades. We are realistic about the political
-        and economic climate we have chosen to operate in and so, have ensured
-        we have people on our board with political clout that covers many
-        African countries and even the western world. We have project management
-        professionals who have delivered projects from Lagos to Sakhalin Islands
-        across many sectors from Media, Oil & Gas, FMCG, Banking and Finance to
-        SMEs. Service will be a major differentiator, so ITEKKU has among its
-        founders, seasoned service professionals who have delivered services
-        across all continents to fortune 500 companies and equally have a track
-        record delivering services to SMEs in Nigeria, Ghana, and Kenya.
+        We are mix of technology professionals and entrepreneurs with deep
+        experience that span over thirty-five years. We have chosen to transform
+        the SME landscape in Africa. Whilst we are not under any illusions about
+        the work ahead, we believe SMEs need real value-add to their business;
+        with us SMEs will have the best tools for Marketing, Financing business,
+        Logistics that is fit for purpose; and Revenue Growing Professionals who
+        will help navigate all the tools to maximise opportunities. Service will
+        be a major differentiator, so ITEKKU has among its founders, seasoned
+        service professionals who have delivered services across all continents
+        to fortune 500 companies and equally have a track record delivering
+        services to SMEs in Nigeria, Ghana, and Kenya.
       </p>
     </div>
   );

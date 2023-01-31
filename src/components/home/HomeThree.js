@@ -12,14 +12,14 @@ const HomeThree = () => {
     <div className="HomeThree" id="Logistics">
       <div className="HomeThreeLeft">
         <h5>
-          Enjoy a <span className="grayColor">cheaper, faster</span> and more{" "}
-          <span className="grayColor">seamless</span> delivery to your doorstep.
+          {/* Enjoy a <span className="grayColor">cheaper, faster</span> and more{" "}
+          <span className="grayColor">seamless</span> delivery to your doorstep. */}
+          Enjoy Affordable, Faster And More Seamless Delivery To Your Doorstep.
         </h5>
         <p>
-          Our we have a cutting edge delivery service that ensures goods gets
-          delivered to you in no more than 50 mins after you’ve made your
-          orders, at a cheaper rate compared to what you’ve experienced in the
-          past
+          We have a cutting-edge delivery service that ensures goods gets
+          delivered in no more than 50 mins after you’ve made your orders, at a
+          competitive rate compared to others.
         </p>
 
         <div className="" style={{ marginTop: 50, marginBottom: 60 }}>

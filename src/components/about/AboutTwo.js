@@ -9,10 +9,9 @@ const AboutTwo = () => {
         </h5>
 
         <p>
-          ITEKKU intends to be one of the most desirable places to work in
-          Africa. We intend to incentivise our people at all levels with a
-          remuneration that combines, bonuses, best in class training and share
-          options as appropriate.
+          Our vision is to be the lifestyle application of choice in Africa,
+          enabling SMEs to create a multifaceted, seamless, and credible trading
+          ecosystem for end-users
         </p>
       </div>
       <div className="aboutTwoRight"></div>

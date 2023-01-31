@@ -5,22 +5,22 @@ const AboutThree = () => {
     {
       id: 1,
       title: "Customer First",
-      desc: "Put customers before everything else",
+      desc: "We put customers first in all we do",
     },
     {
       id: 2,
-      title: "Move Fast ",
-      desc: "Put customers before everything else.",
+      title: "People",
+      desc: "Our People are our most valuable asset",
     },
     {
       id: 3,
-      title: "Strength is ME + YOU",
-      desc: "Together we are stronger than alone ",
+      title: "Value-add",
+      desc: "We build value-add into all products",
     },
     {
       id: 4,
-      title: "Innovate",
-      desc: "We are always looking for way to either change the game or improve the game",
+      title: "Service Excellence",
+      desc: "We always look for ways to enhance customer experience",
     },
   ];
 

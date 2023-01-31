@@ -90,10 +90,10 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer_copyright">
-        <h6>Copyright © ITEKKU Limited 2022</h6>
+        <h6>Copyright © ITEKKU Limited 2023</h6>
         <h6>
-          This site is protected by reCAPTCHA Enterprise and the Google Privacy
-          Policy and Terms of Service apply.
+          This website uses cookies to improve your experience. We'll assume
+          you're ok with this, but you can opt-out if you wish.
         </h6>
       </div>
     </div>

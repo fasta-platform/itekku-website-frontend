@@ -17,16 +17,14 @@ const HomeOne = () => {
       />
       <div className="HomeOneLeft">
         <h5>
-          Shop From Your favourite{" "}
+          Open your online store now
           <span className="grayColor">brands, influencer </span> &{" "}
           <span className="grayColor">Businesses</span>
         </h5>
         <p>
-          With our <span className="fontBold">Social Commerce Platform</span>,
-          you can shop directly on social media from your favourite{" "}
-          <span className="fontBold">Brands Businesses</span> and{" "}
-          <span className="fontBold">influencers</span>
-          seamlessly.
+          iTEKKU is Commerce done right. We’ve combined site development,
+          payment, shipping and shop management into a single beautiful
+          platform.
         </p>
 
         <div className="" style={{ marginTop: 50, marginBottom: 60 }}>
