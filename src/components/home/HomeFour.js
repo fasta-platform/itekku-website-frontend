@@ -210,7 +210,7 @@ const HomeFour = () => {
         {/* <img src={require("../../assets/img/africanman.png")} alt="itekku" /> */}
       </div>
       <div className="HomeFourRight">
-        <div className="row">
+        {/* <div className="row">
           <div className="col-md-7">
             <h4>We Would Love to Know you more </h4>
           </div>
@@ -220,14 +220,18 @@ const HomeFour = () => {
               our service to your business needs
             </p>
           </div>
-        </div>
+        </div> */}
         {/* <h5>
           We Would <span className="grayColor">Love </span> to Know you more
-        </h5>
+        </h5> */}
+        <h4>We Would Love to Know you more </h4>
         <p>
-          Please take a minute to fill the form below so that we can tailor our
-          service to your business needs
-        </p> */}
+          Our suite of Bespoke Products will change the way online business is
+          done from now on. BuyNow-Pay-Later because sometimes you need time to
+          pay back. Social Commerce so you can be where more customers are while
+          receiving help growing your business. Logistics so your customers can
+          receive item purchased without delays.
+        </p>
 
         <form className="itekku_form" onSubmit={submitForm}>
           <div className="form_grid">

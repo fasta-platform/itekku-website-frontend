@@ -743,7 +743,7 @@ button:disabled {
   text-transform: capitalize;
   color: #fff;
   margin-bottom: 30px;
-  text-align: left;
+  text-align: center;
 }
 
 .HomeFourRight h5 {
@@ -760,9 +760,8 @@ button:disabled {
 }
 
 .HomeFourRight p {
-  width: 100% !important;
-  margin: 0px;
-  text-align: right !important;
+  width: 75% !important;
+  margin: 20px auto;
   font-weight: 400;
   font-size: 18.15px;
   line-height: 25px;
@@ -1218,7 +1217,7 @@ button:disabled {
   padding: 70px 80px 50px;
   background: #f1f1f1;
   color: #fff;
-  border-radius: 50px 50px 0px 0px;
+  /* border-radius: 50px 50px 0px 0px; */
 }
 
 .footer_grid {
@@ -3269,12 +3268,18 @@ button:disabled {
 
   /* HomeFour */
   .HomeFour {
-    width: 95%;
-    margin: 30px auto 30px;
-    border-radius: 10px;
+    width: 100%;
+    margin: 0px 0px 0px;
+    border-radius: 0px;
     height: auto;
+    display: block;
   }
 
+  .HomeFourLeft {
+    display: block !important;
+    height: 490px;
+    border-radius: 0px;
+  }
   .HomeFourRight {
     padding: 40px 20px 20px;
   }
