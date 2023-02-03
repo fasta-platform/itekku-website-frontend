@@ -43,6 +43,8 @@ const CalculatorForm = () => {
   const [completedStep2, setCompletedStep2] = useState(false);
   const [selectedItem, setselectedItem] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [currentItem, setCurrentItem] = useState(1);
+  const [currentItemType, setCurrentItemType] = useState("");
   const [itemType, setItemType] = useState(null);
   const [vehicleType, setVehicleType] = useState(null);
   const [allDeliveryDetails, setAllDeliveryDetails] = useState([]);
@@ -119,6 +121,9 @@ const CalculatorForm = () => {
     if (allTimes && allTimes?.length) {
       setPickUpTime(allTimes[0]);
     }
+
+    console.log(currentItemType);
+    console.log(currentItem);
 
     validateForm();
 
@@ -220,29 +225,49 @@ const CalculatorForm = () => {
 
     setAllDeliveryDetails(newData);
 
+    let newItem = currentItem + 1;
+    setCurrentItem(newItem);
+    console.log("currentItem", currentItem);
+
     if (insertType === "SUBMIT") {
       getSummary(newData);
     }
   };
+
   const insertData = (insertType) => {
     let oldData = allDeliveryDetails;
 
     if (insertType === "SUBMIT") {
-      let checkIfPhoneIsAdded = oldData?.length
-        ? oldData?.find(
-            (item) =>
-              item?.receiverPhone === receiverPhone &&
-              item?.receiverName === receiverName
-          )
-        : null;
-
-      console.log(checkIfPhoneIsAdded);
-
-      if (checkIfPhoneIsAdded) {
+      if (currentItemType === "REMOVED") {
         getSummary(oldData);
+      } else if (currentItemType === "ADDED") {
+        let checkIfPhoneIsAdded = oldData?.length
+          ? oldData?.find(
+              (item) =>
+                item?.receiverPhone === receiverPhone &&
+                item?.receiverName === receiverName
+            )
+          : null;
+
+        console.log(checkIfPhoneIsAdded);
+
+        if (checkIfPhoneIsAdded) {
+          getSummary(oldData);
+        } else {
+          addData(insertType);
+        }
       } else {
-        addData(insertType);
+        getSummary({
+          deliveryPoint,
+          receiverName,
+          receiverCountryPhoneCode,
+          receiverPhone,
+          itemDesc,
+          itemType,
+          quantity,
+        });
       }
+
       //
     } else {
       addData(insertType);
@@ -255,6 +280,7 @@ const CalculatorForm = () => {
         message: "adding, Please wait...",
       })
     );
+    setCurrentItemType("ADDED");
 
     setTimeout(() => {
       insertData("ADD");
@@ -274,6 +300,7 @@ const CalculatorForm = () => {
       setReceiverPhone("");
       setQuantity(1);
       setItemType(null);
+      console.log("currentItem", currentItem);
     }, 1400);
   };
 
@@ -291,6 +318,12 @@ const CalculatorForm = () => {
     // console.log(lastAddedElement);
     oldDatas.pop();
     setAllDeliveryDetails(oldDatas);
+
+    let newItem = currentItem - 1;
+
+    console.log(newItem);
+    setCurrentItem(newItem);
+    setCurrentItemType("REMOVED");
   };
 
   const gotoNext = () => {
@@ -408,6 +441,9 @@ const CalculatorForm = () => {
     );
 
     let newDestinations = removeDuplicatePhone(data);
+
+    setCurrentItem(newDestinations?.length);
+    console.log("currentItem", newDestinations?.length);
 
     let payload = {
       pickupLocation: {
@@ -706,9 +742,7 @@ const CalculatorForm = () => {
               <>
                 <div className="form_grid">
                   <div className="form-group">
-                    <label htmlFor="">
-                      Delivery Point {allDeliveryDetails?.length + 1}:
-                    </label>
+                    <label htmlFor="">Delivery Point {currentItem}:</label>
                     {/* <input
                       type="text"
                       value={deliveryPoint}
@@ -807,7 +841,7 @@ const CalculatorForm = () => {
 
                 <div className="form_grid mt-4">
                   <div>
-                    {allDeliveryDetails?.length ? (
+                    {currentItem > 1 ? (
                       <button
                         type="button"
                         style={{

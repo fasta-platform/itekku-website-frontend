@@ -707,7 +707,7 @@ button:disabled {
   display: grid;
   grid-template-columns: 500px 1fr;
   position: relative;
-  height: 900px;
+  /* height: 900px; */
   border-radius: 40px;
 }
 
