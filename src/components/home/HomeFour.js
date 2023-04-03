@@ -3,11 +3,17 @@ import { states } from "../../appData/states";
 import { formateLists } from "../../helpers/customFunctions";
 
 import Swal from "sweetalert2";
-import { setPageLoading } from "../../store/authSlice/authSlice";
-import { useDispatch } from "react-redux";
+import {
+  setPageLoading,
+  setShowMerchantModal,
+} from "../../store/authSlice/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const HomeFour = () => {
   const dispatch = useDispatch();
+  const showMerchantModal = useSelector(
+    (state) => state.oauth.showMerchantModal
+  );
 
   const [fullName, setFullName] = useState("");
   const [businessName, setBusinessName] = useState("");
@@ -52,6 +58,7 @@ const HomeFour = () => {
     setSelectedBusinessSize([]);
     setEmptyFields(true);
     setShowDropDown(false);
+    closeMerchantMenu();
   };
 
   useEffect(() => {
@@ -204,13 +211,34 @@ const HomeFour = () => {
         );
       });
   };
+
+  const closeMerchantMenu = () => {
+    dispatch(setShowMerchantModal(false));
+  };
+
   return (
-    <div className="HomeFour" id="ItekkuForBusiness">
-      <div className="HomeFourLeft">
-        {/* <img src={require("../../assets/img/africanman.png")} alt="itekku" /> */}
+    <div
+      id="ItekkuForBusiness"
+      className={`HomeFour  ${showMerchantModal === true ? "showModal" : ""}`}
+    >
+      <div className="HomeFourMiddle">
+        <div
+          className="closeMerchantButton hideWhileLarge"
+          onClick={() => closeMerchantMenu()}
+        >
+          <i class="bx bx-x"></i>
+        </div>
       </div>
-      <div className="HomeFourRight">
-        {/* <div className="row">
+      <div
+        className={`HomeFourWrapper  ${
+          showMerchantModal === true ? "showModal" : ""
+        }`}
+        onClick={() => closeMerchantMenu()}
+      ></div>
+      <div className="HomeFourGrid">
+        <div className="HomeFourLeft"></div>
+        <div className="HomeFourRight">
+          {/* <div className="row">
           <div className="col-md-7">
             <h4>We Would Love to Know you more </h4>
           </div>
@@ -221,103 +249,103 @@ const HomeFour = () => {
             </p>
           </div>
         </div> */}
-        {/* <h5>
+          {/* <h5>
           We Would <span className="grayColor">Love </span> to Know you more
         </h5> */}
-        <h4>We Would Love to Know you more </h4>
-        <p>
-          Our suite of Bespoke Products will change the way online business is
-          done from now on. BuyNow-Pay-Later because sometimes you need time to
-          pay back. Social Commerce so you can be where more customers are while
-          receiving help growing your business. Logistics so your customers can
-          receive item purchased without delays.
-        </p>
+          <h4>We Would Love to Know you more </h4>
+          <p>
+            Our suite of Bespoke Products will change the way online business is
+            done from now on. BuyNow-Pay-Later because sometimes you need time
+            to pay back. Social Commerce so you can be where more customers are
+            while receiving help growing your business. Logistics so your
+            customers can receive item purchased without delays.
+          </p>
 
-        <form className="itekku_form" onSubmit={submitForm}>
-          <div className="form_grid">
-            <div className="form-group">
-              <label htmlFor="">Your Full Name:</label>
-              <input
-                type="text"
-                value={fullName}
-                required
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="e.g Praise Wiliams "
-              />
+          <form className="itekku_form" onSubmit={submitForm}>
+            <div className="form_grid">
+              <div className="form-group">
+                <label htmlFor="">Your Full Name:</label>
+                <input
+                  type="text"
+                  value={fullName}
+                  required
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="e.g Praise Wiliams "
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="">Your Business Name:</label>
+                <input
+                  type="text"
+                  required
+                  value={businessName}
+                  onChange={(e) => setBusinessName(e.target.value)}
+                  placeholder="e.g Cre8tivnerd Limited "
+                />
+              </div>
             </div>
-            <div className="form-group">
-              <label htmlFor="">Your Business Name:</label>
-              <input
-                type="text"
-                required
-                value={businessName}
-                onChange={(e) => setBusinessName(e.target.value)}
-                placeholder="e.g Cre8tivnerd Limited "
-              />
-            </div>
-          </div>
-          <div className="form_grid">
-            <div className="form-group">
-              <label htmlFor="">Phone No:</label>
-              <div className="form-phone form_phone_large">
-                {/* <div></div> */}
-                <div className="form-phone-input">
-                  <div className="form-phone-input-code">{phoneCode}</div>
-                  <input
-                    type="text"
-                    value={phone}
-                    required
-                    onChange={(e) =>
-                      setPhone(
-                        e.target.value ? parseInt(e.target.value, 10) : ""
-                      )
-                    }
-                    placeholder="e.g 8025777224 "
-                  />
+            <div className="form_grid">
+              <div className="form-group">
+                <label htmlFor="">Phone No:</label>
+                <div className="form-phone form_phone_large">
+                  {/* <div></div> */}
+                  <div className="form-phone-input">
+                    <div className="form-phone-input-code">{phoneCode}</div>
+                    <input
+                      type="text"
+                      value={phone}
+                      required
+                      onChange={(e) =>
+                        setPhone(
+                          e.target.value ? parseInt(e.target.value, 10) : ""
+                        )
+                      }
+                      placeholder="e.g 8025777224 "
+                    />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Email:</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="tyewilliams213@gmail.com"
-              />
-            </div>
-          </div>
-          <div className="form_grid">
-            <div className="form-group">
-              <label htmlFor="">Business Location:</label>
-              <select
-                value={businessLocation}
-                onChange={(e) => setBusinessLocation(e.target.value)}
-              >
-                {allStates &&
-                  allStates?.map((item, i) => (
-                    <option key={i} value={item?.name}>
-                      {item?.name}
-                    </option>
-                  ))}
-              </select>
-            </div>
-            <div className="form-group" style={{ position: "relative" }}>
-              <label htmlFor="">What Service would you like :</label>
-
-              <div
-                onClick={() => toggleDropDown(true)}
-                className="form-phone-input"
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <span>{formateLists(selectedBusinessSize)}</span>{" "}
-                <i className="fa fa-chevron-down"></i>
+              <div className="form-group">
+                <label htmlFor="">Email:</label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="tyewilliams213@gmail.com"
+                />
               </div>
-              {/* <select
+            </div>
+            <div className="form_grid">
+              <div className="form-group">
+                <label htmlFor="">Business Location:</label>
+                <select
+                  value={businessLocation}
+                  onChange={(e) => setBusinessLocation(e.target.value)}
+                >
+                  {allStates &&
+                    allStates?.map((item, i) => (
+                      <option key={i} value={item?.name}>
+                        {item?.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+              <div className="form-group" style={{ position: "relative" }}>
+                <label htmlFor="">What Service would you like :</label>
+
+                <div
+                  onClick={() => toggleDropDown(true)}
+                  className="form-phone-input"
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <span>{formateLists(selectedBusinessSize)}</span>{" "}
+                  <i className="fa fa-chevron-down"></i>
+                </div>
+                {/* <select
                 value={businessSize}
                 onChange={(e) => setBusinessSize(e.target.value)}
               >
@@ -327,52 +355,56 @@ const HomeFour = () => {
                 <option value="1-10">1-10</option>
               </select> */}
 
-              {showDropDown ? (
-                <div className="customChechBoxSelect">
-                  <div className="customChechBoxSelectItems">
-                    {servicesType &&
-                      servicesType?.map((item, i) => (
-                        <div className="custom-control custom-checkbox" key={i}>
-                          <input
-                            type="checkbox"
-                            checked={selectedBusinessSize.includes(item.name)}
-                            onChange={() => addCheckboxItems(item?.name)}
-                            className="custom-control-input"
-                            id={`customCheck1${item?.id}`}
-                          />
-                          <label
-                            className="custom-control-label"
-                            htmlFor={`customCheck1${item?.id}`}
+                {showDropDown ? (
+                  <div className="customChechBoxSelect">
+                    <div className="customChechBoxSelectItems">
+                      {servicesType &&
+                        servicesType?.map((item, i) => (
+                          <div
+                            className="custom-control custom-checkbox"
+                            key={i}
                           >
-                            {item?.name}
-                          </label>
-                        </div>
-                      ))}
+                            <input
+                              type="checkbox"
+                              checked={selectedBusinessSize.includes(item.name)}
+                              onChange={() => addCheckboxItems(item?.name)}
+                              className="custom-control-input"
+                              id={`customCheck1${item?.id}`}
+                            />
+                            <label
+                              className="custom-control-label"
+                              htmlFor={`customCheck1${item?.id}`}
+                            >
+                              {item?.name}
+                            </label>
+                          </div>
+                        ))}
+                    </div>
                   </div>
-                </div>
-              ) : null}
+                ) : null}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <div
-              className="form-group"
-              style={{ marginTop: 80, marginBottom: 60 }}
-            >
-              <button
-                disabled={emptyFields}
-                style={{
-                  paddingLeft: 60,
-                  paddingRight: 60,
-                  width: 300,
-                }}
-                className="fasta_outline_button"
+            <div>
+              <div
+                className="form-group"
+                style={{ marginTop: 80, marginBottom: 60 }}
               >
-                Submit
-              </button>
+                <button
+                  disabled={emptyFields}
+                  style={{
+                    paddingLeft: 60,
+                    paddingRight: 60,
+                    width: 300,
+                  }}
+                  className="fasta_outline_button"
+                >
+                  Submit
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

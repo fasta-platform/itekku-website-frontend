@@ -100,36 +100,42 @@ const NavBar = () => {
         </div>
 
         <NavLink to="/about" className="top_link showOnMobile">
-          About Us
+          <span className="d-block">About Us </span>
+          <span style={{ color: "#313131", fontWeight: 300 }}>
+            Learn about us{" "}
+          </span>
         </NavLink>
         <NavLink to="/contact" className="top_link showOnMobile">
-          Contact Us
+          <span className="d-block">Contact Us</span>
+          <span style={{ color: "#313131", fontWeight: 300 }}>
+            Learn about us{" "}
+          </span>
         </NavLink>
         <a
           href="true"
           onClick={(e) => scrollElement(e, "SocialCommerce")}
-          className="top_link scroll active"
+          className="top_link scroll active hideSmall"
         >
           Social Commerce
         </a>
         <a
           href="true"
           onClick={(e) => scrollElement(e, "BuyNowPaylater")}
-          className="top_link scroll active"
+          className="top_link scroll active hideSmall"
         >
           Buy Now Paylater
         </a>
         <a
           href="true"
           onClick={(e) => scrollElement(e, "Logistics")}
-          className="top_link scroll active"
+          className="top_link scroll active hideSmall"
         >
           Logistics
         </a>
         <a
           href="true"
           onClick={(e) => scrollElement(e, "ItekkuForBusiness")}
-          className="top_link scroll active"
+          className="top_link scroll active hideSmall"
         >
           iTEKKU For Business
         </a>
@@ -149,24 +155,26 @@ const NavBar = () => {
       </div>
 
       <div className="navbar_right">
-        <CustomButtonImage
-          handleClick={handleButtonClick}
-          text={
-            ["Home", "About", "Contact"].includes(currentPageName)
-              ? "Make A Delivery"
-              : "Make A Delivery"
-          }
-          dark={
-            ["Home", "About", "Contact"].includes(currentPageName)
-              ? true
-              : false
-          }
-          imageSrc={
-            ["Home", "About", "Contact"].includes(currentPageName)
-              ? require("../../assets/img/vector/dashboardd.png")
-              : require("../../assets/img/vector/dashboardd2.png")
-          }
-        />
+        {["Home", "About", "Contact"].includes(currentPageName) && (
+          <CustomButtonImage
+            handleClick={handleButtonClick}
+            text={
+              ["Home", "About", "Contact"].includes(currentPageName)
+                ? "Make A Delivery"
+                : "Make A Delivery"
+            }
+            dark={
+              ["Home", "About", "Contact"].includes(currentPageName)
+                ? true
+                : false
+            }
+            imageSrc={
+              ["Home", "About", "Contact"].includes(currentPageName)
+                ? require("../../assets/img/vector/dashboardd.png")
+                : require("../../assets/img/vector/dashboardd2.png")
+            }
+          />
+        )}
 
         <div className="navbar_right_bugr">
           <i className="bx bx-menu" onClick={() => toggleMenu()}></i>

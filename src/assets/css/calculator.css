@@ -672,7 +672,20 @@
   }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 550px) {
+  .calculator {
+    background: #fff;
+    padding-top: 40px;
+  }
+
+  .calculator::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  .calculatorFormScroll {
+    padding: 20px 0px 30px;
+  }
+
   .itekku_form_flex {
     display: block !important;
   }
@@ -695,9 +708,13 @@
     width: 100%;
   }
 
-  .calculatorFormScroll {
-    padding: 50px 20px 30px;
+  .stepper-wrapper {
+    margin: 0px auto 0px;
   }
+
+  /* .calculatorFormScroll {
+    padding: 50px 20px 30px;
+  } */
 
   .fasta_step {
     padding: 10px 0px;

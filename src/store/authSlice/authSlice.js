@@ -16,6 +16,7 @@ const initialState = {
 
   whatsappNumber: null,
   showMobileMenu: false,
+  showMerchantModal: false,
 };
 
 const authSlice = createSlice({
@@ -54,6 +55,10 @@ const authSlice = createSlice({
     setShowMobileMenu: (state, { payload }) => {
       state.showMobileMenu = payload;
     },
+
+    setShowMerchantModal: (state, { payload }) => {
+      state.showMerchantModal = payload;
+    },
   },
 
   extraReducers: {
@@ -70,6 +75,7 @@ export const {
   setPageLoading,
   setWhatsappNumber,
   setShowMobileMenu,
+  setShowMerchantModal,
 } = authSlice.actions;
 
 export default authSlice.reducer;

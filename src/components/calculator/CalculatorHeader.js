@@ -7,14 +7,18 @@ const CalculatorHeader = ({ currentStep, goToPrevious }) => {
 
   return (
     <div className="calculatorHeader">
-      {currentStep !== 1 ? (
+      {/* {currentStep !== 1 ? (
         <span
           className="fa fa-chevron-left"
           onClick={() => goToPrevious()}
         ></span>
       ) : (
         <div></div>
-      )}
+      )} */}
+      <span
+        className="fa fa-chevron-left"
+        onClick={() => goToPrevious()}
+      ></span>
 
       <h4>
         {currentStep === 1 && "Make A Delivery"}

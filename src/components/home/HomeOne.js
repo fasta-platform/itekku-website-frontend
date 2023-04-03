@@ -1,11 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { setShowMerchantModal } from "../../store/authSlice/authSlice";
+import { useDispatch } from "react-redux";
 
 const HomeOne = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const goToCalculator = () => {
     navigate("/calculator");
+  };
+
+  const showBecomeAPartner = () => {
+    dispatch(setShowMerchantModal(true));
   };
 
   return (
@@ -18,7 +25,7 @@ const HomeOne = () => {
       <div className="HomeOneLeft">
         <h5>
           Open your online store now
-          <span className="grayColor">brands, influencer </span> &{" "}
+          <span className="grayColor"> brands, influencer </span> &{" "}
           <span className="grayColor">Businesses</span>
         </h5>
         <p>
@@ -27,14 +34,25 @@ const HomeOne = () => {
           platform.
         </p>
 
-        <div className="" style={{ marginTop: 50, marginBottom: 60 }}>
-          <button
-            onClick={() => goToCalculator()}
-            style={{ paddingLeft: 60, paddingRight: 60 }}
-            className="fasta_button"
-          >
-            Get Started
-          </button>
+        <div className="" style={{ marginTop: 20, marginBottom: 60 }}>
+          <div className="mobileGS">
+            <button
+              onClick={() => goToCalculator()}
+              style={{ paddingLeft: 60, paddingRight: 60 }}
+              className="fasta_button"
+            >
+              Get Started
+            </button>
+          </div>
+          <div className="mobileBAM">
+            <button
+              onClick={() => showBecomeAPartner()}
+              style={{ paddingLeft: 60, paddingRight: 60 }}
+              className="fasta_button"
+            >
+              <b> Become A Merchant</b>
+            </button>
+          </div>
         </div>
       </div>
       <div className="HomeOneRight">

@@ -264,6 +264,11 @@ button:disabled {
   color: #111111;
 }
 
+.btnLight {
+  background: #fff;
+  color: #111111;
+}
+
 .fasta_outline_button.borderDark {
   color: #111;
   border: 2px solid #111;
@@ -277,6 +282,10 @@ button:disabled {
 
 .fasta_outline_button.borderDark:disabled:hover {
   background: initial;
+}
+
+.hideWhileLarge {
+  display: none;
 }
 
 /* .fasta_outline_dark_button {
@@ -328,6 +337,11 @@ button:disabled {
 
 .fasta_button:disabled:hover {
   background: #7c7c7c;
+}
+
+.mobileMAD,
+.mobileBAM {
+  display: none;
 }
 
 .header_fixed {
@@ -604,7 +618,7 @@ button:disabled {
 
 .HomeTwoLeftImg1 {
   height: 152px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .HomeTwoLeftImg3 {
@@ -704,14 +718,24 @@ button:disabled {
   margin: 120px auto 100px;
   background: #111;
   color: #fff;
-  display: grid;
-  grid-template-columns: 500px 1fr;
   position: relative;
   /* height: 900px; */
   border-radius: 40px;
 }
 
+/* HomeFourGrid */
+.HomeFourGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 500px 1fr;
+}
+
+.HomeFourMiddle {
+  display: none;
+}
+
 .HomeFourLeft {
+  display: block;
   width: 100%;
   height: inherit;
   background: url("../img/africanman.png");
@@ -873,6 +897,34 @@ button:disabled {
   font-size: 14.6181px;
   line-height: 20px;
   color: #a8a8a8;
+}
+
+.HomeFive {
+  width: 100%;
+  position: relative;
+  padding: 60px 60px 60px;
+}
+
+.HomeFive h4 {
+  font-style: normal;
+  font-weight: 800;
+  font-size: 40.28px;
+  line-height: 55px;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+  color: #111;
+}
+
+.HomeFiveImage {
+  margin-top: -40px;
+  display: flex;
+  /* grid-template-columns: repeat(2, 1fr); */
+  align-items: center;
+  column-gap: 100px;
+}
+
+.HomeFiveImage img {
+  width: 20%;
 }
 
 /* ABOUT */
@@ -1393,7 +1445,7 @@ button:disabled {
 
   .HomeTwoLeftImg1 {
     height: 142px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
 
   .HomeTwoLeftImg3 {
@@ -1450,9 +1502,13 @@ button:disabled {
   .HomeFour {
     width: 92%;
     margin: 80px auto 100px;
-    grid-template-columns: 500px 1fr;
+
     margin-bottom: 100px;
     /* height: 900px; */
+  }
+
+  .HomeFourGrid {
+    grid-template-columns: 500px 1fr;
   }
 
   .HomeFourRight {
@@ -1746,7 +1802,7 @@ button:disabled {
 
   .HomeTwoLeftImg1 {
     height: 142px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
 
   .HomeTwoLeftImg3 {
@@ -1803,9 +1859,13 @@ button:disabled {
   .HomeFour {
     width: 92%;
     margin: 80px auto 100px;
-    grid-template-columns: 400px 1fr;
+
     margin-bottom: 100px;
     /* height: 900px; */
+  }
+
+  .HomeFourGrid {
+    grid-template-columns: 400px 1fr;
   }
 
   .HomeFourRight {
@@ -2188,7 +2248,7 @@ button:disabled {
   .HomeTwoLeftImg1 {
     width: 100%;
     height: auto;
-    margin-bottom: 15px;
+    margin-bottom: 0px;
   }
 
   .HomeTwoLeftImg3 {
@@ -2248,6 +2308,10 @@ button:disabled {
     grid-template-columns: 300px 1fr;
     margin-bottom: 100px;
     /* height: 900px; */
+  }
+
+  .HomeFourGrid {
+    grid-template-columns: 300px 1fr;
   }
 
   .HomeFourRight {
@@ -2481,6 +2545,10 @@ button:disabled {
     height: 32px;
   }
 
+  .hideSmall {
+    display: none !important;
+  }
+
   /* Banner */
   .homeTopBanner {
     padding: 90px 40px 30px;
@@ -2534,18 +2602,18 @@ button:disabled {
 
   .HomeOne_fresh {
     /* display: none; */
-    left: unset;
-    right: 40px;
+    left: 10px;
+    /* right: 40px; */
     width: 218px;
-    bottom: unset;
-    top: 30px;
+    bottom: 0px;
+    /* top: 30px; */
   }
 
-  .HomeOneLeft {
-    max-width: 70%;
+  /* .HomeOneLeft {
+    max-width: 100%;
     padding: 50px 60px 20px 40px;
     text-align: center;
-  }
+  } */
 
   .HomeOneLeft h5 {
     font-size: 30px;
@@ -2557,10 +2625,10 @@ button:disabled {
     line-height: 30px;
   }
 
-  .HomeOneLeft div {
+  /* .HomeOneLeft div {
     width: 100%;
     text-align: center;
-  }
+  } */
 
   .HomeOneLeft div .fasta_button {
     width: 280px;
@@ -2568,14 +2636,15 @@ button:disabled {
 
   .HomeOneRight {
     padding: 0px;
+    padding-top: 190px !important;
   }
 
-  .banner_logo {
+  /* .banner_logo {
     display: flex;
     gap: 20px;
     max-width: 100%;
     margin: auto;
-  }
+  } */
 
   .HomeOneRight {
     padding: 60px 50px;
@@ -2587,16 +2656,25 @@ button:disabled {
 
   /* HomeTwo */
   .HomeTwo {
-    display: block;
+    /* display: block; */
+    display: flex;
+    flex-direction: column-reverse;
   }
 
   .HomeTwo_fresh {
-    right: 20px;
-    width: 400px;
+    right: unset;
+    left: 0px;
+    width: 500px;
   }
 
-  .HomeTwoLeft {
+  /* .HomeTwoLeft {
     display: none;
+  } */
+
+  .HomeTwoLeft_wrapper {
+    width: 40%;
+    padding: 30px;
+    margin-left: auto !important;
   }
 
   .HomeTwoRight {
@@ -2653,6 +2731,10 @@ button:disabled {
     margin: 50px auto 50px;
     display: block;
     /* height: 900px; */
+  }
+
+  .HomeFourGrid {
+    display: block;
   }
 
   .HomeFourLeft {
@@ -2887,14 +2969,29 @@ button:disabled {
   }
 
   .HomeTwo_fresh {
-    right: 20px;
-    width: 300px;
-    bottom: unset;
-    top: 40px;
+    width: 50%;
   }
 
   .HomeTwoRight {
     padding: 80px 40px 0px;
+  }
+
+  .HomeFive {
+    padding: 60px 40px 60px;
+  }
+
+  .HomeFive h4 {
+    font-size: 30px;
+    line-height: 45px;
+  }
+
+  .HomeFiveImage {
+    margin-top: -40px;
+    column-gap: 100px;
+  }
+
+  .HomeFiveImage img {
+    width: 30%;
   }
 }
 
@@ -2923,12 +3020,7 @@ button:disabled {
     line-height: 30px;
   }
 
-  .HomeOne {
-    text-align: center;
-  }
-
-  .HomeOne_fresh,
-  .HomeTwo_fresh {
+  /* .HomeTwo_fresh {
     position: relative;
     text-align: center;
     display: flex;
@@ -2939,37 +3031,58 @@ button:disabled {
     width: auto !important;
     margin: auto !important;
     height: 400px;
-  }
+  } */
 
   .HomeOneLeft {
     max-width: 95%;
   }
 
+  .HomeOneRight {
+    padding-top: 120px !important;
+    padding-bottom: 120px !important;
+  }
+
   .banner_logo {
-    display: flex;
-    flex-wrap: wrap;
-    /* grid-template-columns: repeat(minmax(50px, 1fr)); */
+    /* display: flex;
+    flex-wrap: wrap; */
+    /* justify-content: center; */
     width: 100%;
   }
 
-  .HomeTwoRight {
+  /* .HomeTwoRight {
     max-width: 800px;
     padding: 80px 40px 0px;
+  } */
+
+  .HomeTwoLeft {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .HomeTwo_fresh {
+    width: 60%;
   }
 
   .HomeThree {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
+  }
+
+  .HomeThreeLeft {
+    padding: 90px 70px 40px 40px;
   }
 
   .HomeThreeRight {
-    padding: 50px 0px;
+    padding: 100px 0px 0px;
+    position: relative;
+    justify-content: flex-end;
+    align-items: flex-end;
   }
 
   .HomeOneLeft h5,
   .HomeTwoRight h5,
   .HomeThreeLeft h5 {
-    font-size: 27px;
+    font-size: 30px;
     line-height: 40px;
   }
 
@@ -2989,6 +3102,19 @@ button:disabled {
   .HomeThreeLeft p {
     font-size: 16px;
     line-height: 30px;
+  }
+
+  .HomeThree_fresh {
+    position: absolute;
+    /* left: calc(100% - 920px); */
+    width: 60%;
+    left: 0px;
+  }
+
+  .HomeThree_fresh2 {
+    /* left: calc(100% - 920px); */
+    width: 55%;
+    margin-right: 0px;
   }
 
   /* ABOUT */
@@ -3186,14 +3312,32 @@ button:disabled {
     width: 100% !important;
     overflow-x: hidden !important;
   }
+
+  .hideWhileLarge,
+  .mobileMAD,
+  .mobileBAM {
+    display: block;
+  }
+
+  .mobileGS,
+  .itekku-top-header,
+  .navbar_right .fasta_button {
+    display: none;
+  }
+
+  .navbar_middle {
+    width: 100%;
+  }
+
   .homeTopBannerContent {
     width: 100%;
     max-width: 350px;
   }
 
   .homeTopBannerContent h5 {
-    font-size: 28px;
+    font-size: 32px;
     line-height: 40px;
+    margin-top: 70px;
   }
 
   .homeTopBannerContent p {
@@ -3206,45 +3350,66 @@ button:disabled {
   } */
 
   .banner_img_one,
+  .banner_img_two {
+    top: 10px;
+  }
+
+  .banner_img_one,
   .banner_img_three {
-    left: -5%;
+    left: 1%;
   }
 
   .banner_img_two,
   .banner_img_four {
-    right: -5%;
+    right: 1%;
   }
 
   .HomeOneLeft {
     max-width: 100%;
-    padding: 50px 60px 20px 40px;
-    text-align: center;
+    padding: 50px 20px 20px 20px;
   }
 
-  /* .HomeOneRight {
-    display: none;
-  } */
+  .HomeOne_fresh {
+    width: 190px;
+  }
+
+  .HomeOneRight {
+    padding-left: 40px;
+    padding-right: 20px;
+    padding-top: 100px !important;
+    padding-bottom: 60px !important;
+  }
+
+  .banner_logo {
+    /* display: flex;
+    flex-wrap: wrap; */
+    /* justify-content: center; */
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    margin-right: 0px !important;
+  }
 
   .HomeTwoRight {
     width: 100%;
     max-width: 100%;
-    padding: 50px 60px 20px 40px;
-    text-align: center;
+    padding: 50px 20px 20px 20px;
+    /* text-align: center; */
   }
 
   .HomeThreeLeft {
     width: 100%;
     max-width: 100%;
-    padding: 50px 60px 20px 40px;
-    text-align: center;
+    padding: 50px 60px 20px 20px;
+    /* text-align: center; */
   }
 
-  .HomeOneLeft div,
-  .HomeTwoRight div,
-  .HomeThreeLeft div {
+  /* .HomeOneLeft div, */
+  /* .HomeTwoRight div, */
+  /* .HomeThreeLeft div {
     width: 100%;
     text-align: center;
-  }
+  } */
 
   .HomeOneLeft div .fasta_button,
   .HomeTwoRight div .fasta_outline_button,
@@ -3255,7 +3420,7 @@ button:disabled {
   .HomeOneLeft h5,
   .HomeTwoRight h5,
   .HomeThreeLeft h5 {
-    font-size: 24px;
+    font-size: 30px;
     line-height: 40px;
   }
 
@@ -3268,20 +3433,75 @@ button:disabled {
 
   /* HomeFour */
   .HomeFour {
+    display: none;
+  }
+
+  .HomeFour.showModal {
     width: 100%;
-    margin: 0px 0px 0px;
+    position: fixed;
+    bottom: 0px;
+    margin: 0px;
     border-radius: 0px;
-    height: auto;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    height: 89%;
     display: block;
+    z-index: 90000;
+  }
+
+  .HomeFourWrapper.showModal {
+    display: unset;
+    position: fixed;
+    top: 0;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: rgba(24, 22, 22, 0.678);
+    z-index: 9009;
+  }
+
+  .HomeFourGrid {
+    height: 100%;
   }
 
   .HomeFourLeft {
-    display: block !important;
-    height: 490px;
-    border-radius: 0px;
+    display: none !important;
   }
+
+  .HomeFourMiddle {
+    position: relative !important;
+    display: block !important;
+    height: auto;
+    border-radius: 0px;
+    background: transparent;
+    z-index: 90999;
+    text-align: right;
+    padding-top: 20px;
+    padding-right: 20px;
+  }
+
+  .closeMerchantButton {
+    text-align: right;
+    font-size: 30px;
+    color: #222;
+    padding: 0px 8px;
+    background: #fff;
+    display: inline-block;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
   .HomeFourRight {
-    padding: 40px 20px 20px;
+    position: relative !important;
+    width: 100%;
+    height: 100%;
+    padding: 30px 20px 100px;
+    z-index: 90999;
+    overflow-y: scroll;
+  }
+
+  .HomeFourRight::-webkit-scrollbar {
+    width: 0px;
   }
 
   .HomeFourRight h5 {
@@ -3291,15 +3511,19 @@ button:disabled {
   }
 
   .HomeFourRight h4 {
-    font-size: 24px;
+    font-size: 27px;
     line-height: 40px;
     margin-bottom: 20px;
+    padding-right: 120px;
+    text-align: left;
   }
 
   .HomeFourRight p {
-    width: 75%;
+    width: 95% !important;
     font-size: 15px;
     line-height: 20px;
+    margin-left: 0px;
+    text-align: left !important;
   }
 
   .form_grid {
@@ -3311,6 +3535,24 @@ button:disabled {
   .form_grid .form-group {
     display: block;
     margin-bottom: 30px;
+  }
+
+  .HomeFive {
+    padding: 40px 30px 20px;
+  }
+
+  .HomeFive h4 {
+    font-size: 30px;
+    line-height: 45px;
+  }
+
+  .HomeFiveImage {
+    margin-top: 0px;
+    column-gap: 70px;
+  }
+
+  .HomeFiveImage img {
+    width: 39%;
   }
 
   /* ABOUT */
@@ -3448,13 +3690,35 @@ button:disabled {
     margin-bottom: 30px;
   }
 
+  .footer {
+    width: 100%;
+    padding: 50px 20px 50px;
+    background: #111111;
+    color: #fff;
+  }
+
+  .footer_item h4 {
+    color: #fff;
+  }
+
+  .footer_item img {
+    display: none;
+  }
+
+  .footer_item_links_social a,
+  .footer_item_links a {
+    color: #dfdbdb;
+  }
+
   .footer_copyright {
     border-top: 1px solid #222222;
     padding-top: 30px;
+    color: #bcbcbc;
+    text-align: left;
   }
 
   .footer_copyright h6 {
-    width: 90%;
+    width: 100%;
   }
 }
 

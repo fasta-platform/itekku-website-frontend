@@ -1,11 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { setShowMerchantModal } from "../../store/authSlice/authSlice";
+import { useDispatch } from "react-redux";
 
 const HomeTwo = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const goToCalculator = () => {
     navigate("/calculator");
+  };
+
+  const showBecomeAPartner = () => {
+    dispatch(setShowMerchantModal(true));
   };
 
   return (
@@ -22,11 +29,11 @@ const HomeTwo = () => {
             src={require("../../assets/img/p5.png")}
             alt="itekku"
           />
-          <img
+          {/* <img
             className="HomeTwoLeftImg2"
             src={require("../../assets/img/p6.png")}
             alt="itekku"
-          />
+          /> */}
           <img
             className="HomeTwoLeftImg3"
             src={require("../../assets/img/p7.png")}
@@ -45,14 +52,27 @@ const HomeTwo = () => {
           your payment across multiple installment to ease the pressure on you.
         </p>
 
-        <div className="" style={{ marginTop: 50, marginBottom: 60 }}>
-          <button
-            onClick={() => goToCalculator()}
-            style={{ paddingLeft: 60, paddingRight: 60 }}
-            className="fasta_outline_button"
+        <div className="">
+          <div className="mobileGS" style={{ marginTop: 50, marginBottom: 60 }}>
+            <button
+              onClick={() => goToCalculator()}
+              style={{ paddingLeft: 60, paddingRight: 60 }}
+              className="fasta_outline_button"
+            >
+              Get Started
+            </button>
+          </div>
+          <div
+            className="mobileBAM"
+            style={{ marginTop: 20, marginBottom: 60 }}
           >
-            Get Started
-          </button>
+            <button
+              onClick={() => showBecomeAPartner()}
+              className="fasta_outline_button"
+            >
+              Become A Merchant
+            </button>
+          </div>
         </div>
       </div>
     </div>
